@@ -1,0 +1,7 @@
+{
+  "name": "mangalaunch-site",
+  "private": true,
+  "description": "Buildless MangaLaunch landing page and extension authoring guide",
+  "scripts": { "test": "node --test tests/*.test.cjs" },
+  "engines": { "node": ">=22" }
+}
