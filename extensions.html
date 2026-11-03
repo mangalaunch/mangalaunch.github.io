@@ -44,17 +44,18 @@
 <a data-i18n="copy.library" href="index.html#library">Library</a><a data-i18n="copy.reader" href="index.html#reader">Reader</a><a data-i18n="copy.extensions" href="index.html#extensions">Extensions</a><a data-i18n="copy.faq" href="index.html#faq">FAQ</a>
 <a data-i18n="copy.sync" href="index.html#sync">Sync</a><a aria-current="page" data-i18n="copy.developer-guide" href="extensions.html">Developer guide</a><a class="nav-cta" data-i18n="copy.get-the-app" href="index.html#download">Get the app <svg class="icon"><use href="#i-arrow"></use></svg></a>
 </nav>
-</header><main class="section-shell guide-main" id="main"><header class="guide-heading"><a class="text-link" data-i18n="guide.home" href="index.html">Back to MangaLaunch</a><p class="eyebrow">SOURCE API / V1</p><h1 data-i18n="guide.intro">Build a source. Share a new chapter.</h1><p data-i18n="guide.lead">A complete Source API v1 guide: from the first catalog request to filters, authentication, signing and publishing.</p><p class="guide-note" data-i18n="guide.note">Examples use a fictional website. Replace its addresses, IDs and implementation with those of your source.</p></header><div class="guide-layout"><aside class="guide-sidebar"><h2 data-i18n="guide.contents">On this page</h2><div data-locale-content="en" lang="en"><nav aria-label="Guide sections" class="guide-toc"><a href="#en-1-prerequisites-and-layout">1. Prerequisites and layout</a><a href="#en-2-manifest-for-a-separate-package">2. Manifest for a separate package</a><a href="#en-3-implementing-a-source">3. Implementing a source</a><a href="#en-4-http-html-and-images">4. HTTP, HTML and images</a><a href="#en-5-filters-settings-and-authentication">5. Filters, settings and authentication</a><a href="#en-6-performance-limits-and-errors">6. Performance, limits and errors</a><a href="#en-7-tests-before-release">7. Tests before release</a><a href="#en-8-signing-and-local-import">8. Signing and local import</a><a href="#en-9-publishing-on-github">9. Publishing on GitHub</a><a href="#en-10-api-v1-contract-reference">10. API v1 contract reference</a></nav></div><div data-locale-content="ru" hidden="" lang="ru"><nav aria-label="Разделы руководства" class="guide-toc"><a href="#ru-1">1. Подготовка и структура</a><a href="#ru-2-manifest">2. Manifest отдельного пакета</a><a href="#ru-3">3. Реализация источника</a><a href="#ru-4-http-html">4. HTTP, HTML и изображения</a><a href="#ru-5">5. Фильтры, настройки и авторизация</a><a href="#ru-6">6. Производительность, ограничения и ошибки</a><a href="#ru-7">7. Тесты перед выпуском</a><a href="#ru-8">8. Подпись и локальный импорт</a><a href="#ru-9-github">9. Публикация на GitHub</a><a href="#ru-10-api-v1">10. Справочник контрактов API v1</a></nav></div><div class="guide-downloads"><strong data-i18n="guide.contracts">API contracts</strong><a download="" href="assets/sdk/source-api.d.ts">Source API v1 ↓</a><a download="" href="assets/sdk/manifest.schema.json">manifest.schema.json ↓</a><a download="" href="assets/sdk/repository-index.schema.json">repository-index.schema.json ↓</a></div></aside><div class="guide-body"><article class="guide-article" data-locale-content="en" lang="en"><p>Sections: <a href="#en-source-example">complete source example</a> · <a href="#en-filter-contract">filter contract</a> · <a href="#en-publishing">publication</a> · <a href="#en-api-reference">DTO, ctx and manifest reference</a>.</p>
-<p>A guide to Source API v1: creating a package, implementing a source, testing, signing and publishing. An extension is a signed <code>.mlsource</code> file containing one or more sources. A source is a separate website registration with its own ID, settings and session.</p>
-<p>The contract is defined by the <a href="assets/sdk/source-api.d.ts">API types</a>, <a href="assets/sdk/manifest.schema.json">manifest schema</a> and <a href="assets/sdk/repository-index.schema.json">repository index schema</a>. The examples use a fictional <code>example.org</code> API: they demonstrate the structure and are not a working source for a real website.</p>
+</header><main class="section-shell guide-main" id="main"><header class="guide-heading"><a class="text-link" data-i18n="guide.home" href="index.html">Back to MangaLaunch</a><p class="eyebrow">SOURCE API / V1</p><h1 data-i18n="guide.intro">Create an extension for MangaLaunch</h1><p data-i18n="guide.lead">Connect a website, implement its catalog and reader, then sign and publish your package.</p><p class="guide-note" data-i18n="guide.note">Source API v1 · Examples, filter contracts, authentication and release instructions.</p></header><div class="guide-layout"><aside class="guide-sidebar"><h2 data-i18n="guide.contents">On this page</h2><div data-locale-content="en" lang="en"><nav aria-label="Guide sections" class="guide-toc"><a href="#en-1-prerequisites-and-layout">1. Prerequisites and layout</a><a href="#en-2-manifest-for-a-separate-package">2. Manifest for a separate package</a><a href="#en-3-implementing-a-source">3. Implementing a source</a><a href="#en-4-http-html-and-images">4. HTTP, HTML and images</a><a href="#en-5-filters-settings-and-authentication">5. Filters, settings and authentication</a><a href="#en-6-performance-limits-and-errors">6. Performance, limits and errors</a><a href="#en-7-tests-before-release">7. Tests before release</a><a href="#en-8-signing-and-local-import">8. Signing and local import</a><a href="#en-9-publishing-on-github">9. Publishing on GitHub</a><a href="#en-10-api-v1-contract-reference">10. API v1 contract reference</a></nav></div><div data-locale-content="ru" hidden="" lang="ru"><nav aria-label="Разделы руководства" class="guide-toc"><a href="#ru-1">1. Подготовка и структура</a><a href="#ru-2-manifest">2. Manifest отдельного пакета</a><a href="#ru-3">3. Реализация источника</a><a href="#ru-4-http-html">4. HTTP, HTML и изображения</a><a href="#ru-5">5. Фильтры, настройки и авторизация</a><a href="#ru-6">6. Производительность, ограничения и ошибки</a><a href="#ru-7">7. Тесты перед выпуском</a><a href="#ru-8">8. Подпись и локальный импорт</a><a href="#ru-9-github">9. Публикация на GitHub</a><a href="#ru-10-api-v1">10. Справочник контрактов API v1</a></nav></div><div class="guide-downloads"><strong data-i18n="guide.contracts">API contracts</strong><a download="" href="assets/sdk/source-api.d.ts">Source API v1 ↓</a><a download="" href="assets/sdk/manifest.schema.json">manifest.schema.json ↓</a><a download="" href="assets/sdk/repository-index.schema.json">repository-index.schema.json ↓</a></div></aside><div class="guide-body"><article class="guide-article" data-locale-content="en" lang="en"><p>Quick links: <a href="#en-source-example">source example</a> · <a href="#en-filter-contract">filters</a> · <a href="#en-publishing">publishing</a> · <a href="#en-api-reference">API reference</a>.</p>
+<p>An extension is a signed <code>.mlsource</code> package with one or more sources. Each source connects a website to MangaLaunch and has its own ID, settings and sign-in session.</p>
+<p>For a working example, see <a href="https://github.com/mangalaunch/MangaLaunch-Official-Extensions">MangaLaunch Official Extensions</a>: source modules, registrations, tests and release workflows. The examples below use a fictional <code>example.org</code> API; adapt the endpoints and parsers to your website.</p>
+<p>Check field names and types against the <a href="assets/sdk/source-api.d.ts">API types</a>, <a href="assets/sdk/manifest.schema.json">manifest schema</a> and <a href="assets/sdk/repository-index.schema.json">repository index schema</a>.</p>
 <h2 id="en-1-prerequisites-and-layout">1. Prerequisites and layout</h2>
 <p>Use Node.js 22 or later. Run commands from the extension repository root.</p>
 <pre><code class="language-powershell">npm ci --ignore-scripts
 npm rebuild esbuild
 npm test
 </code></pre>
-<p>Inspect the website's responses: catalog and pagination, search, filters, details, chapters, pages, recommendations, login, redirects and image domains. Prefer an available structured API; otherwise use HTML projections.</p>
-<p>For a separate package, copy the <a href="#en-starter-files">template</a> into your own project directory and replace the fictional URLs, IDs, license and implementation:</p>
+<p>Before writing a parser, check how the website serves its catalog, pagination, search, filters, title details, chapters, pages and recommendations. Also check login redirects and image domains. Use a structured API when one is available; otherwise extract the required fields from HTML.</p>
+<p>For a new package, copy the <a href="#en-starter-files">template</a> into a project directory. Replace the example URLs, IDs, license and source implementation:</p>
 <pre><code class="language-text">my-sources/
   manifest.json
   LICENSE
@@ -64,11 +65,11 @@ npm test
   tests/
     source.test.mjs
 </code></pre>
-<p>To add a source to an existing bundle, add its module under <code>src/sources/</code> or a shared factory under <code>src/engines/</code>, a registration in <code>src/definitions.mjs</code> and the ID → factory mapping in <code>src/index.mjs</code>. Update the registration and module tests.</p>
-<p>Choose your own package name, extensionId, publisher key and source IDs. Keep NSFW content in an explicitly marked package; set isNsfw: true for those sources.</p>
-<p>Source, manga and chapter IDs must remain stable: the library, history and progress depend on them. A domain change is not an ID change. Moving an existing sourceId requires an application version with explicit source-transfer approval: first update the installed owner so its signed manifest no longer declares the source, then import the receiving package and confirm transfer of settings and sign-in sessions. A live declaration remains protected even when disabled. Uninstalling the owner does not release its IDs; reinstall its updated package if necessary. Ordinary installation never silently transfers ownership.</p>
-<h3 id="en-starter-files">Starter files and tools</h3><p>Download the files below, preserving their relative paths. The example uses a fictional API: adapt the manifest and source before publishing. The generic packer reads your own manifest, not a preconfigured source list. Tools run locally on Node.js and are not part of the extension runtime. No runtime dependencies or compilation are required for this example.</p><ul class="starter-files"><li><a download="" href="assets/extension-kit/templates/json-api/manifest.json">templates/json-api/manifest.json</a></li><li><a download="" href="assets/extension-kit/templates/json-api/src/index.mjs">templates/json-api/src/index.mjs</a></li><li><a download="" href="assets/extension-kit/tools/generate-key.mjs">tools/generate-key.mjs</a></li><li><a download="" href="assets/extension-kit/tools/pack_extension.mjs">tools/pack_extension.mjs</a></li><li><a download="" href="assets/extension-kit/tools/package_format.mjs">tools/package_format.mjs</a></li><li><a download="" href="assets/extension-kit/tools/sign_repository_index.mjs">tools/sign_repository_index.mjs</a></li><li><a download="" href="assets/extension-kit/src/core/recent.mjs">src/core/recent.mjs</a></li><li><a download="" href="assets/extension-kit/LICENSE.txt">LICENSE.txt</a></li></ul><p>Place the two template files in <code>my-sources/manifest.json</code> and <code>my-sources/src/index.mjs</code>. Save the tools under <code>tools/</code> beside that project. Add your own <code>my-sources/LICENSE</code>. The packer and index signer both need <code>tools/package_format.mjs</code>. Keep a private signing key outside public files. The current toolkit creates the three package assets and the two signed repository-index assets described below.</p><h2 id="en-2-manifest-for-a-separate-package">2. Manifest for a separate package</h2>
-<p>Save this as <code>manifest.json</code>. The empty <code>files</code> object is a placeholder: the packer adds payload sizes and SHA-256 hashes and creates the signature. Do not manually edit a signed manifest.</p>
+<p>In the official repository, source modules live in <code>src/sources/</code>, shared factories in <code>src/engines/</code>, registrations in <code>src/definitions.mjs</code>, and the ID-to-factory mapping in <code>src/index.mjs</code>. This layout is useful for a bundle; it is not required by the API. A single-source package can use the smaller structure above. Add tests for each registration and parser.</p>
+<p>Use your own package name, <code>extensionId</code>, publisher key and source IDs. Mark NSFW sources with <code>isNsfw: true</code> and distribute them in a clearly labelled package.</p>
+<p>Keep source, manga and chapter IDs stable: MangaLaunch uses them to link library entries, history and progress. Changing a domain does not require a new ID. To transfer an existing <code>sourceId</code> between packages, first update the installed owner so its signed manifest no longer lists that source. Then import the receiving package in an application version that supports source transfers and confirm the transfer of settings and sign-in sessions. Disabling a package does not release its IDs. Uninstalling it also retains ownership; reinstall the updated owner if needed. Installation never transfers ownership without approval.</p>
+<h3 id="en-starter-files">Starter files and tools</h3><p>Download these files with their relative paths intact. The tools run locally on Node.js; they are not included in the source runtime. This template needs no third-party runtime dependencies or compilation. The packer reads the manifest from your project.</p><ul class="starter-files"><li><a download="" href="assets/extension-kit/templates/json-api/manifest.json">templates/json-api/manifest.json</a></li><li><a download="" href="assets/extension-kit/templates/json-api/src/index.mjs">templates/json-api/src/index.mjs</a></li><li><a download="" href="assets/extension-kit/tools/generate-key.mjs">tools/generate-key.mjs</a></li><li><a download="" href="assets/extension-kit/tools/pack_extension.mjs">tools/pack_extension.mjs</a></li><li><a download="" href="assets/extension-kit/tools/package_format.mjs">tools/package_format.mjs</a></li><li><a download="" href="assets/extension-kit/tools/sign_repository_index.mjs">tools/sign_repository_index.mjs</a></li><li><a download="" href="assets/extension-kit/src/core/recent.mjs">src/core/recent.mjs</a></li><li><a download="" href="assets/extension-kit/LICENSE.txt">LICENSE.txt</a></li></ul><p>Put the template files at <code>my-sources/manifest.json</code> and <code>my-sources/src/index.mjs</code>, and add <code>my-sources/LICENSE</code>. Put the tools in a sibling <code>tools/</code> directory; both the packer and index signer need <code>tools/package_format.mjs</code>. Keep the private signing key outside published files. The signing steps below produce three package files and two repository-index files.</p><h2 id="en-2-manifest-for-a-separate-package">2. Manifest for a separate package</h2>
+<p>Save the following as <code>manifest.json</code>. Leave <code>files</code> empty in the template: the packer fills in file sizes and SHA-256 hashes before signing. Any later edit invalidates the signature.</p>
 <pre><code class="language-json">{
   "schemaVersion": 1,
   "extensionId": "example.sources",
@@ -119,7 +120,7 @@ npm test
   }]
 }
 </code></pre>
-<p>Declaration rules:</p>
+<p>When filling in the manifest:</p>
 <ul>
 <li><code>capabilities</code> and <code>features</code> must match the implemented methods. Set <code>metadataOnly: true</code> for a metadata-only source; do not advertise reading support.</li>
 <li><code>origins</code> covers HTML/API, <code>imageOrigins</code> covers covers, language flags and reader pages, and <code>authOrigins</code> covers domains allowed to receive authentication. Declare exact HTTPS origins without paths. Subdomains require explicit <code>allowSubdomains</code>.</li>
@@ -131,8 +132,8 @@ npm test
 </ul>
 <p><a id="en-source-example"></a></p>
 <h2 id="en-3-implementing-a-source">3. Implementing a source</h2>
-<p>The entry point is a synchronous <code>export default function createSource(ctx)</code> returning a method object. Imports and factory creation must not perform HTTP, HTML, settings or authentication operations: packages are also checked offline.</p>
-<p>The runtime provides JavaScript, Promise, URL/URLSearchParams and UTF-8 TextEncoder/TextDecoder. Node.js, <code>process</code>, <code>require</code>, filesystem, sockets and browser DOM are unavailable. Imports must be relative paths to signed package files; remote dependencies are not loaded.</p>
+<p>The entry point is a synchronous <code>export default function createSource(ctx)</code> that returns the source methods. Keep imports and factory creation free of HTTP, HTML, settings and authentication calls: the application also checks packages offline.</p>
+<p>The runtime provides JavaScript, <code>Promise</code>, <code>URL</code>/<code>URLSearchParams</code> and UTF-8 <code>TextEncoder</code>/<code>TextDecoder</code>. It has no Node.js, <code>process</code>, <code>require</code>, filesystem, sockets or browser DOM. Import dependencies by relative paths to signed package files; remote imports are unavailable.</p>
 <table>
 <thead>
 <tr>
@@ -184,7 +185,7 @@ npm test
 </tr>
 </tbody>
 </table>
-<p>A complete starting point for the fictional JSON API, in <code>src/index.mjs</code>:</p>
+<p>Here is a source for the example JSON API. Save it as <code>src/index.mjs</code>:</p>
 <pre><code class="language-js">const invalid = () =&gt; Object.assign(
   Error('Unexpected API response.'), {code: 'parse_error', phase: 'parse'},
 );
@@ -287,13 +288,13 @@ export default function createSource(ctx) {
   };
 }
 </code></pre>
-<p>This API returns <code>{items: [...]}</code> for catalogs and chapters, a manga object for details, <code>{images: [...]}</code> for pages, and <code>{items: [...], hasNextPage: boolean}</code> for recommendations. Replace that contract with the website's actual responses.</p>
-<p>All results must be JSON data. Return nullable DTO fields as <code>null</code> and arrays as arrays; do not return <code>undefined</code>, <code>NaN</code>, functions or DOM objects. Image URLs must be absolute. Pagination starts at 1; <code>PageDto.index</code> starts at 0, without gaps or duplicates. Chapter IDs must be unique; numbers must be finite and retain fractional values. Dates use ISO-8601 with a timezone (UTC recommended) or <code>null</code>.</p>
-<p>Preserve <code>available</code>, <code>temporarilyUnavailable</code> or <code>paid</code> in <code>ChapterDto.access</code>, together with available <code>availableAt</code>, <code>priceLabel</code> and <code>message</code> information. Paid access must not become a generic network error. A metadata-only source implements the required chapter and page methods by returning empty arrays.</p>
+<p>The example website returns <code>{items: [...]}</code> for catalogs and chapters, a manga object for details, <code>{images: [...]}</code> for pages, and <code>{items: [...], hasNextPage: boolean}</code> for recommendations. Adapt the parser to the actual responses from your website.</p>
+<p>Return JSON data: use <code>null</code> for nullable fields and arrays for lists. Do not return <code>undefined</code>, <code>NaN</code>, functions or DOM objects. Image URLs must be absolute. Catalog pages start at 1; <code>PageDto.index</code> starts at 0 and has no gaps or duplicates. Chapter IDs must be unique, and chapter numbers must be finite; keep fractional numbers. Dates use ISO-8601 with a timezone, preferably UTC, or <code>null</code>.</p>
+<p>Use <code>ChapterDto.access</code> to distinguish <code>available</code>, <code>temporarilyUnavailable</code> and <code>paid</code>. Include <code>availableAt</code>, <code>priceLabel</code> and <code>message</code> when the website provides them. Report paid access as an access restriction rather than a network failure. A metadata-only source still implements the required chapter and page methods, returning empty arrays.</p>
 <h2 id="en-4-http-html-and-images">4. HTTP, HTML and images</h2>
-<p>Make all network requests through <code>ctx.http.request</code>. The application applies the session and allowed transport parameters. HTTPS, origin, port and permission checks also apply to every redirect.</p>
-<p>Do not inject arbitrary <code>Cookie</code>, <code>Authorization</code>, <code>Host</code> or <code>User-Agent</code> headers. Use session declarations and <code>userAgentProfile</code>: <code>app</code>, <code>browser</code>, <code>reader</code>, <code>mobileSafari</code>. <code>Referer</code> and <code>Origin</code> must belong to allowed origins. Public API headers are subject to the supported network policy.</p>
-<p>For HTML, prefer one nested projection over many sequential calls:</p>
+<p>Send requests through <code>ctx.http.request</code>. The application attaches the source session and applies transport permissions. HTTPS, origin, port and permission checks run again on each redirect.</p>
+<p>Declare authentication in the manifest instead of setting <code>Cookie</code>, <code>Authorization</code>, <code>Host</code> or <code>User-Agent</code> yourself. Select a <code>userAgentProfile</code>: <code>app</code>, <code>browser</code>, <code>reader</code> or <code>mobileSafari</code>. <code>Referer</code> and <code>Origin</code> must use allowed origins. The HTTP reference below lists the supported public API headers.</p>
+<p>Extract related HTML fields in one nested projection:</p>
 <pre><code class="language-js">const response = await ctx.http.request({
   method: 'GET', url: new URL('/catalog', ctx.baseUrl).href,
   responseType: 'text',
@@ -307,9 +308,9 @@ const cards = await ctx.html.extract(response.body, {
   },
 });
 </code></pre>
-<p>Run this inside an asynchronous source method and add the <code>html</code> permission. Projection results are data, not a live DOM. Available fields include <code>fields</code>, <code>all</code>, <code>required</code>, <code>text</code>, <code>attr</code>, <code>absoluteUrl</code>, <code>html</code>, <code>outerHtml</code>, <code>ascend</code>, <code>nextSibling</code>, <code>directChildren</code> and <code>tagName</code>.</p>
-<p><code>exclude</code> removes matching descendants from text projections; <code>normalizeWhitespace: false</code> preserves internal whitespace. <code>containsText: ["term"]</code> returns a boolean for 1–8 literal substrings of up to 256 characters each. This mode cannot be combined with other value modes and does not execute regex.</p>
-<p>Return image URLs from <code>getPages</code>, not image bytes or base64. The media broker handles cover/page loading, caching, headers and sessions. Preserve signed CDN URL parameters. Supported image transformations use declarative <code>media.transform</code>; arbitrary manifest decoders are not executed.</p>
+<p>Run this example inside an asynchronous source method and declare the <code>html</code> permission. A projection returns data, not DOM nodes. Its fields include <code>fields</code>, <code>all</code>, <code>required</code>, <code>text</code>, <code>attr</code>, <code>absoluteUrl</code>, <code>html</code>, <code>outerHtml</code>, <code>ascend</code>, <code>nextSibling</code>, <code>directChildren</code> and <code>tagName</code>.</p>
+<p><code>exclude</code> removes matching descendants from a text projection. <code>normalizeWhitespace: false</code> keeps internal whitespace. <code>containsText: ["term"]</code> checks for 1–8 literal substrings, each up to 256 characters, and returns a boolean. It does not run a regular expression and cannot share a node with another output mode.</p>
+<p><code>getPages</code> returns image URLs. The application’s media broker downloads and caches covers and pages, using the declared headers and session. Keep signed CDN query parameters intact. For supported image transformations, use <code>media.transform</code>; the manifest cannot run an arbitrary decoder.</p>
 <h2 id="en-5-filters-settings-and-authentication">5. Filters, settings and authentication</h2>
 <p><a id="en-filter-contract"></a></p>
 <h3 id="en-filters-complete-contract">Filters: complete contract</h3>
@@ -379,12 +380,12 @@ interface SourceQueryDto {
 </tr>
 </tbody>
 </table>
-<p>In FilterOptionDto, <code>value</code> is a string API ID, <code>label</code> is a nonempty display name, and <code>caption</code> is an explanation or <code>null</code>. Numeric website IDs are also strings, such as <code>"42"</code>; convert them to numbers only when constructing a request if the API requires it. Values must be unique within a filter. Identical labels with different values are technically possible but make chips ambiguous.</p>
-<p>An empty <code>option.value: ""</code> is allowed for a neutral option such as Any. In singleSelect/sort, choosing it effectively clears the selection; do not use an empty string as a meaningful ID. Empty strings are not allowed in defaultValues. The UI does not use options on toggle/text.</p>
-<p>Return all contract fields explicitly, including <code>caption: null</code>, <code>options: []</code> and <code>defaultValues: []</code> where empty. Some omitted arrays are accepted as empty for compatibility; this does not permit an arbitrary DTO shape.</p>
+<p>In <code>FilterOptionDto</code>, <code>value</code> is the string ID sent to the source, <code>label</code> is its nonempty display name, and <code>caption</code> is an explanation or <code>null</code>. Keep numeric website IDs as strings, for example <code>"42"</code>; convert them only when the website API needs a number. Values must be unique within a filter. Avoid giving different values the same label: users cannot distinguish the resulting chips.</p>
+<p>An option may have <code>value: ""</code> for a neutral choice such as “Any”. In <code>singleSelect</code> and <code>sort</code>, this clears the selection. An empty string cannot be a meaningful ID or appear in <code>defaultValues</code>. The UI ignores <code>options</code> for <code>toggle</code> and <code>text</code>.</p>
+<p>Return the declared fields explicitly: use <code>caption: null</code>, <code>options: []</code> and <code>defaultValues: []</code> when empty. Some omitted arrays are accepted for compatibility, but new sources should return the complete DTO.</p>
 <p>Decoding limits: <strong>256 filters</strong>, <strong>10000 options</strong> and <strong>10000 defaultValues</strong> per filter. Key/label/value/caption strings are limited to 16384 characters without NUL; required strings cannot be whitespace-only. Choose short machine keys, especially for filterBindings, whose key references are limited to 128 characters. Duplicate keys, duplicate values, unknown kinds, invalid supportsDirection and unsupported defaults reject the entire list.</p>
 <h4 id="en-how-each-kind-transmits-its-selection">How each kind transmits its selection</h4>
-<p>selectedFilters contains no booleans, numbers, nulls, nested objects or scalar strings: <strong>every key maps to string[]</strong>. Options.value and key are case-sensitive; do not localize or pre-encode them.</p>
+<p>Each <code>selectedFilters</code> entry is a <code>string[]</code>. Booleans, numbers, <code>null</code>, nested objects and scalar strings are invalid here. Keys and option values are case-sensitive; do not translate or URL-encode them before passing them to the source.</p>
 <table>
 <thead>
 <tr>
@@ -426,10 +427,10 @@ interface SourceQueryDto {
 </tr>
 </tbody>
 </table>
-<p>The text editor may display terms as chips and join enabled terms with <code>,</code>. The wire value remains one string. There is no universal CSV, quoting, author-ID-list or search-syntax contract: the source defines its meaning and explains it in caption. Preserve aliases such as <code>name | alias</code>.</p>
-<p>For triState, add the prefix <strong>only to the selected value</strong>, not options.value. Declare <code>value: "action"</code>; receive <code>"include:action"</code>. Use exact <code>include:</code> and <code>exclude:</code> prefixes; <code>-action</code>, <code>!action</code>, booleans and <code>ignore:action</code> are not the contract. After removing the prefix, retain the complete original ID, including any remaining colons.</p>
-<p>The UI does not simultaneously include and exclude one option. Sources must handle old presets/positions robustly: deduplicate, check values against current options and define a conflict policy. The example below gives inclusion priority over exclusion; this is example policy, not a hidden server rule.</p>
-<p>A complete input query covering every kind:</p>
+<p>The text editor can show terms as chips and join active terms with <code>,</code>, but the source still receives one string. There is no shared CSV, author-ID or search-syntax parser. Define the meaning in your source and explain it in <code>caption</code>. Keep aliases such as <code>name | alias</code> intact.</p>
+<p>For <code>triState</code>, declare the unprefixed value, for example <code>value: "action"</code>. The selection arrives as <code>"include:action"</code> or <code>"exclude:action"</code>. Only these prefixes are supported; <code>-action</code>, <code>!action</code>, booleans and <code>ignore:action</code> are invalid. Remove the first prefix and keep the rest of the ID, including any further colons.</p>
+<p>The UI cannot both include and exclude the same option. Old saved selections can still contain conflicts or removed options, so deduplicate values, validate them against current options and decide how to resolve conflicts. In the example below, inclusion wins; your website may require another policy.</p>
+<p>A query using every filter kind:</p>
 <pre><code class="language-json">{
   "searchTerm": "A &amp; B",
   "page": 2,
@@ -475,9 +476,9 @@ interface SourceQueryDto {
 </tr>
 </tbody>
 </table>
-<p>The application uses defaults to display multiSelect but <strong>does not automatically expand them into the source's selectedFilters</strong>. The source must apply defaults when a key is absent. Distinguish <code>selectedFilters.languages ?? defaults</code> from <code>selectedFilters.languages?.length ? ... : defaults</code>: the latter wrongly replaces an explicit <code>[]</code>.</p>
-<p>Other kinds have no declarative initial selection: <code>defaultValue</code>, <code>selected</code>, <code>checked</code>, <code>min</code>/<code>max</code> are not FilterDto fields. Initial ordering belongs in getPopular/getLatest/search, not sort.defaultValues.</p>
-<p>The application preserves explicit empty arrays. Entries with nonempty arrays containing only whitespace strings are removed before the request. Do not use such entries as special control signals.</p>
+<p>MangaLaunch uses defaults to display <code>multiSelect</code>, but does not insert them into <code>selectedFilters</code>. Apply defaults in the source when the key is missing. Use <code>selectedFilters.languages ?? defaults</code>; a length check would incorrectly replace an explicit <code>[]</code> after the user clears the filter.</p>
+<p>Other kinds have no declarative initial selection. <code>defaultValue</code>, <code>selected</code>, <code>checked</code> and <code>min/max</code> are not <code>FilterDto</code> fields. Set the initial order in <code>getPopular</code>, <code>getLatest</code> and <code>search</code>, rather than in a sort filter’s <code>defaultValues</code>.</p>
+<p>Explicit empty arrays reach the source unchanged. Entries whose nonempty arrays contain only whitespace strings are removed before the request; do not use them as control signals.</p>
 <h4 id="en-catalog-routing-and-sort-order">Catalog routing and sort order</h4>
 <ul>
 <li>Empty searchTerm and selectedFilters: discovery calls getPopular; latest calls getLatest.</li>
@@ -488,7 +489,7 @@ interface SourceQueryDto {
 <li>Search/filter changes restart pagination at 1. Do not share one cursor between different selections or simultaneous operations; isolate API cursors by the normalized query.</li>
 </ul>
 <h4 id="en-complete-module-handling-all-six-kinds">Complete module handling all six kinds</h4>
-<p>Save as <code>src/catalog-filters.mjs</code>. Website parameters such as <code>language[]</code> and <code>genre[]</code> are fictional; replace them with the actual API contract. Repeated query parameters use append rather than String(array).</p>
+<p>Save the next example as <code>src/catalog-filters.mjs</code>. Replace <code>language[]</code>, <code>genre[]</code> and the other fictional website parameters with real ones. Use <code>append</code> for repeated query parameters; <code>String(array)</code> produces a different request.</p>
 <pre><code class="language-js">const choices = {
   format: [['manga', 'Manga'], ['manhwa', 'Manhwa']],
   languages: [['en', 'English'], ['ru', 'Russian'], ['ja', 'Japanese']],
@@ -595,19 +596,19 @@ export function createCatalogMethods(ctx, mapManga) {
   };
 }
 </code></pre>
-<p>To integrate with the complete source in section 3, import <code>createCatalogMethods</code> from <code>./catalog-filters.mjs</code>, create <code>const catalog = createCatalogMethods(ctx, manga)</code> inside createSource, and spread <code>...catalog</code> into the returned object. Remove the previous getPopular/getLatest/search/getFilters methods so they do not override the helper. Keep getDetails/getChapters/getPages/getRecommendations from the complete example.</p>
-<p>This module:</p>
+<p>To use this module with section 3, import <code>createCatalogMethods</code> from <code>./catalog-filters.mjs</code> and call <code>const catalog = createCatalogMethods(ctx, manga)</code> inside <code>createSource</code>. Spread <code>...catalog</code> into the returned object, replacing the earlier <code>getPopular</code>, <code>getLatest</code>, <code>search</code> and <code>getFilters</code> methods. Keep the details, chapters, pages and recommendations methods from section 3.</p>
+<p>The module handles:</p>
 <ul>
 <li>Returns declarations for every supported kind and applies defaults to ordinary catalogs as well.</li>
 <li>Reads only known keys and API values, ignoring unknown old values. It does not forward URLs, arbitrary sort fields or query fragments from selectedFilters.</li>
 <li>Preserves text, encodes special characters once, and handles include/exclude, repeated parameters and asc/desc.</li>
 <li>Stores no active-query state; multiple search operations can run concurrently.</li>
 </ul>
-<p>Depending on the API, use GET query, JSON POST or form POST. The selectedFilters contract remains identical: the source translates selections into IDs, numbers, inclusion/exclusion arrays and body fields. For form bodies, send a URLSearchParams string with the appropriate Content-Type; an object body does not automatically become a form.</p>
-<p>There are no native kinds for numeric/date ranges, groups, dependent dropdowns, remote autocomplete, custom HTML or custom controls. A range can use two text filters with bounds validated during request construction. A dropdown takes a complete flat options list; getFilters receives no text for remote option searching.</p>
+<p>Translate <code>selectedFilters</code> into the website’s request format: GET query parameters, JSON POST or form POST. The source is responsible for IDs, numbers, inclusion/exclusion arrays and body fields. For a form, pass a <code>URLSearchParams</code> string with the correct <code>Content-Type</code>; an object body is not encoded as a form automatically.</p>
+<p>There are no filter kinds for ranges, groups, dependent dropdowns, remote autocomplete, custom HTML or custom controls. Represent a range with two <code>text</code> filters and validate its bounds when building the request. Dropdowns need a complete flat <code>options</code> list; <code>getFilters</code> receives no option-search text.</p>
 <h4 id="en-dynamic-options-and-refresh">Dynamic options and refresh</h4>
-<p>Declare <code>supportsFilterRefresh: true</code> for refreshable taxonomy. The UI requests <code>getFilters({refresh: true})</code>; ordinary calls pass false or omit the argument. The application caches successful snapshots and shares ordinary concurrent reads; failures allow retries. Do not assume getFilters always runs before search/getLatest.</p>
-<p>Create any source-side cache and forced-refresh logic inside the factory. Example <code>src/filter-cache.mjs</code>:</p>
+<p>If the website’s options can change, declare <code>supportsFilterRefresh: true</code>. A user refresh calls <code>getFilters({refresh: true})</code>; ordinary calls pass <code>false</code> or omit the argument. MangaLaunch caches successful snapshots and shares concurrent ordinary reads. Failed loads can be retried. A search or latest request may run before <code>getFilters</code>.</p>
+<p>Keep source-side caches inside the factory. This <code>src/filter-cache.mjs</code> helper supports forced refresh:</p>
 <pre><code class="language-js">export function cachedFilterLoader(loadFilters) {
   let snapshot;
   let pending;
@@ -635,10 +636,10 @@ export function createCatalogMethods(ctx, mapManga) {
   };
 }
 </code></pre>
-<p>Use <code>const getFilters = cachedFilterLoader(() =&gt; loadFiltersFromSite(ctx))</code> inside createSource. loadFiltersFromSite must return a complete FilterDto[], validate the website response and preserve stable API values. The helper does not cache failures or let an old response overwrite a newer snapshot. Static filters do not need caching or refresh.</p>
-<p>Saved filters and positions use key/value, so changing labels is safe while renaming keys/values breaks old selections. If the site removes an option, do not blindly forward it; choose and document a compatible policy. Do not disguise a taxonomy failure as a successful empty list.</p>
+<p>Inside <code>createSource</code>, use <code>const getFilters = cachedFilterLoader(() =&gt; loadFiltersFromSite(ctx))</code>. Your loader must validate the response and return a complete <code>FilterDto[]</code> with stable values. The helper retries failures and prevents an older response from overwriting a newer snapshot. Static filters need neither caching nor refresh.</p>
+<p>Saved filters and positions store <code>key</code> and <code>value</code>. You can rename a label without breaking them; changing a key or value breaks the link. Decide how to handle options removed by the website and document that choice. If loading options fails, report the error rather than returning an empty list.</p>
 <h4 id="en-manga-chips-and-filterbindings">Manga chips and filterBindings</h4>
-<p>The source manifest's filterBindings accepts <code>author</code>, <code>artist</code> and <code>tags</code> roles; values are <strong>filter keys</strong>, not option API IDs. For example, <code>{"author": "author", "tags": "genres"}</code>.</p>
+<p>Use <code>filterBindings</code> to connect title-card chips to filters. It accepts the roles <code>author</code>, <code>artist</code> and <code>tags</code>; each value is a filter key, not an option ID. For example: <code>{"author": "author", "tags": "genres"}</code>.</p>
 <ul>
 <li>Author/artist bind to kind=text and send the full display name as one string. Resolve names to API IDs inside search if required.</li>
 <li>The shared MangaDto.tags list can contain genres, tags, themes and formats. The application matches chip labels to option.label on suitable singleSelect/multiSelect/triStateMultiSelect filters.</li>
@@ -647,9 +648,9 @@ export function createCatalogMethods(ctx, mapManga) {
 <li>Return clean matching names without badge counts, unrelated descendant text or HTML. Preserve complete author aliases.</li>
 </ul>
 <h4 id="en-required-filter-tests">Required filter tests</h4>
-<p>Test every kind, missing keys versus [], default and cleared multiSelect, global reset, all sort fields/directions, fixed sort without direction, include/exclude/ignore, conflicting and removed options, text containing special characters and commas, empty-searchTerm filtering, changes after page 1, concurrent queries with different selections, refresh after failure, and old/new snapshot races. Separately test genre, tag and author/artist chips.</p>
+<p>Test each kind with a missing key, an explicit <code>[]</code>, defaults and a cleared selection. Check reset, every sort field and direction, fixed-direction sorting, include/exclude/ignore, conflicts and removed options. Include text with commas and special characters, filtering with an empty <code>searchTerm</code>, changes after page 1, concurrent selections, refresh after failure and old/new response races. Check genre, tag and author/artist chips separately.</p>
 <h3 id="en-settings">Settings</h3>
-<p>Add the <code>sourceSettings</code> permission and a <code>settings</code> block to the source definition, for example:</p>
+<p>Add the <code>sourceSettings</code> permission and a <code>settings</code> block to the source definition:</p>
 <pre><code class="language-json">{
   "version": 1,
   "fields": [{
@@ -662,9 +663,9 @@ export function createCatalogMethods(ctx, mapManga) {
   }]
 }
 </code></pre>
-<p>Read with <code>await ctx.settings.get("titleLanguage")</code>; write with <code>await ctx.settings.set("titleLanguage", "english")</code>. <code>get("source")</code> returns the declared source fields. Supported types are boolean/string/integer/enum; provide valid defaults and constraints. The names <code>source</code> and <code>network</code> are reserved. <code>roles.titleLanguage</code> can point to the corresponding enum field.</p>
+<p>Read a setting with <code>await ctx.settings.get("titleLanguage")</code> and write it with <code>await ctx.settings.set("titleLanguage", "english")</code>. <code>get("source")</code> returns all declared source fields. Types are <code>boolean</code>, <code>string</code>, <code>integer</code> and <code>enum</code>; give each field a valid default and constraints. The names <code>source</code> and <code>network</code> are reserved. <code>roles.titleLanguage</code> can reference a declared enum field.</p>
 <h3 id="en-authentication">Authentication</h3>
-<p>Login, CAPTCHA and SSO take place in the application's WebView. The extension declares parameters rather than implementing its own login UI. Add the <code>account</code> capability, <code>features.auth: true</code>, the <code>sourceSession</code> permission and an <code>auth</code> block:</p>
+<p>Login, CAPTCHA and SSO run in the application’s WebView. The source declares how to recognise and export the session. Add the <code>account</code> capability, <code>features.auth: true</code>, the <code>sourceSession</code> permission and an <code>auth</code> block:</p>
 <pre><code class="language-json">{
   "profileId": "host.cookie.v1",
   "loginUrl": "https://example.org/login",
@@ -672,8 +673,8 @@ export function createCatalogMethods(ctx, mapManga) {
   "sessionExport": {"headers": ["Cookie"], "values": []}
 }
 </code></pre>
-<p>Align <code>network.authOrigins</code>, <code>cookieOrigins</code> and the actual login/API domains. A parent Cookie Domain needs an explicit separate grant. Do not export sessions to a CDN merely to load images. Set <code>completionUrl</code>/<code>successUrl</code> from the website's actual flow; <code>features.authCompletion</code> must match the declaration.</p>
-<p>Bearer sessions use <code>host.session.v1</code> and declarative <code>rules</code>: <code>bearer</code>, <code>cookieAll</code>/<code>cookieAny</code>, <code>tokenStorageKeys</code>, <code>tokenPath</code>, <code>tokenFields</code>, <code>tokenTypePath</code>, <code>tokenType</code>, <code>tokenCookieNames</code>. Explicitly declare the headers/values to export. Cookie tokens use exact <code>tokenCookieNames</code>, without wildcards. The application reads storage and constructs headers.</p>
+<p>Match <code>network.authOrigins</code> and <code>cookieOrigins</code> to the actual login and API domains. A parent cookie domain needs its own explicit grant. Do not export a session to a CDN just to load images. Set <code>completionUrl</code> and <code>successUrl</code> from the website’s login flow, and keep <code>features.authCompletion</code> consistent with them.</p>
+<p>For Bearer sessions, use <code>host.session.v1</code> and the declarative rules <code>bearer</code>, <code>cookieAll</code>/<code>cookieAny</code>, <code>tokenStorageKeys</code>, <code>tokenPath</code>, <code>tokenFields</code>, <code>tokenTypePath</code>, <code>tokenType</code> and <code>tokenCookieNames</code>. Declare each exported header and value. <code>tokenCookieNames</code> takes exact cookie names without wildcards. The application reads storage and builds the headers.</p>
 <p>Ordinary HTTP requests receive the current session automatically. If an API needs an allowed token in a POST body:</p>
 <pre><code class="language-js">const session = await ctx.auth.getSession({url: apiUrl});
 const response = await ctx.http.request({
@@ -681,7 +682,7 @@ const response = await ctx.http.request({
   authRevision: session.revision, body: {token: session.accessToken},
 });
 </code></pre>
-<p>This request requires an allowed POST method and URL and an exported <code>accessToken</code>. Pass <code>authRevision</code> so that a session change cancels an outdated operation. Do not cache or log tokens, cookies, passwords or session snapshots.</p>
+<p>This request needs an allowed POST method and URL, plus an exported <code>accessToken</code>. Pass <code>authRevision</code> so that a session change cancels outdated work. Never cache or log tokens, cookies, passwords or session snapshots.</p>
 <h2 id="en-6-performance-limits-and-errors">6. Performance, limits and errors</h2>
 <ul>
 <li>Every sourceId has separate settings, cookies, tokens and browser profile, even when a website or engine is shared.</li>
@@ -748,9 +749,9 @@ const response = await ctx.http.request({
 </tr>
 </tbody>
 </table>
-<p>The application can reduce effective concurrency. The HTTP limit is separate from the number of simultaneous source methods.</p>
-<p>When the response structure changes, return <code>parse_error</code> or <code>invalid_response</code>, not a false successful empty catalog. An empty list means no results or the end of pagination. Standard codes also include <code>auth_required</code>, <code>challenge_required</code>, <code>rate_limited</code>, <code>not_found</code>, <code>chapter_unavailable</code>, <code>timeout</code> and <code>cancelled</code>; see the API types for the full list. A safe error is <code>Object.assign(Error("Unexpected catalog response."), {code: "parse_error", phase: "parse"})</code>.</p>
-<p>Preserve the broker's original error code. Do not hide 403/challenge/429 by cycling through domains, or automatically retry POST and login. Use <code>ctx.log.info(event, fields)</code> for short diagnostics without secrets.</p>
+<p>The effective HTTP limit may be lower than the manifest allows. It is separate from the number of source methods that can run at once.</p>
+<p>If the website changes its response format, return <code>parse_error</code> or <code>invalid_response</code>. Return an empty list only when there are no results or pagination has ended. Other standard codes include <code>auth_required</code>, <code>challenge_required</code>, <code>rate_limited</code>, <code>not_found</code>, <code>chapter_unavailable</code>, <code>timeout</code> and <code>cancelled</code>; the reference below lists them all. To report a parsing failure: <code>Object.assign(Error("Unexpected catalog response."), {code: "parse_error", phase: "parse"})</code>.</p>
+<p>Preserve the host’s original error code. Do not cycle through domains to hide 403, challenges or 429, and do not automatically repeat POST requests or login. Log short diagnostic events through <code>ctx.log.info(event, fields)</code> without secrets.</p>
 <h2 id="en-7-tests-before-release">7. Tests before release</h2>
 <p>A minimal <code>tests/source.test.mjs</code> for the section 3 example:</p>
 <pre><code class="language-js">import test from 'node:test';
@@ -782,23 +783,23 @@ test('factory is offline and search encodes input once', async () =&gt; {
   assert.equal(calls[0].searchParams.get('excludeGenres'), 'horror');
 });
 </code></pre>
-<p>For your project, run <code>node --test tests/*.test.mjs</code>. If you define a test script in package.json, <code>npm test</code> may wrap that command.</p>
-<p>Cover first/next/empty pages, special search characters, filter clearing, include/exclude, sorting, malformed JSON/HTML, fractional chapters, access restrictions, image URLs and recommendations. Test offline factory creation, independent instances and concurrent methods without mixed state.</p>
-<p>Before publication, check catalogs, details, reading and images, mirrors, login/logout and session changes in the application. Confirm that updates retain IDs and user data. Check the available target platforms separately; parser tests do not establish website, account or WebView behavior.</p>
+<p>Run <code>node --test tests/*.test.mjs</code> from your project. You can also add this command as the <code>test</code> script in <code>package.json</code> and use <code>npm test</code>.</p>
+<p>Cover first, next and empty catalog pages; search with special characters; filter clearing, include/exclude and sorting; malformed JSON/HTML; fractional chapters; access restrictions; image URLs; and recommendations. Check that factories can be created offline and that separate instances and concurrent methods do not mix data.</p>
+<p>Before publishing, check catalog browsing, title details, reading, images, mirrors, login, logout and account changes in the application on each target platform. Confirm that an update preserves IDs and user data. Parser tests alone cannot verify live websites, accounts or WebView login.</p>
 <h2 id="en-8-signing-and-local-import">8. Signing and local import</h2>
-<p>Choose your own license and ensure you have the rights to distribute the source files, data and images. The supplied toolkit is <strong>All rights reserved</strong>; public availability does not itself grant redistribution rights. See its license. Preserve the licenses of third-party components.</p>
-<p>Create an Ed25519 key in a private directory. <code>.keys/</code> is ignored by Git; the key must not appear in commits, release assets, logs or examples:</p>
+<p>Choose a license for your code and check that you may distribute any borrowed source files, data or images. The supplied toolkit is All rights reserved; see its license before redistributing it. A public repository does not by itself grant reuse rights. Preserve third-party licenses.</p>
+<p>Create an Ed25519 key in a private directory. Exclude <code>.keys/</code> from Git before generating it. Keep the key out of commits, release files, logs and examples:</p>
 <pre><code class="language-powershell">node tools/generate-key.mjs .keys/publisher.pem my-publisher-2026
 </code></pre>
 <p>Package a separate project:</p>
 <pre><code class="language-powershell">node tools/pack_extension.mjs --project ./my-sources --key .keys/publisher.pem --key-id my-publisher-2026 --output ./dist/my-sources.mlsource
 </code></pre>
-<p>The packer creates <code>.mlsource</code>, <code>.mlsource.public.json</code> and <code>.mlsource.sha256</code>, signs the manifest, records payload hashes/sizes and verifies the resulting archive. Packaging is reproducible for identical files, version and key.</p>
-<p>Import the public record and package through extension settings, independently verify the public key's SHA-256 fingerprint and allowed extensionIds, then approve the publisher and permissions. A nearby <code>.public.json</code> helps comparison but does not establish trust by itself. A local test key is not a production key.</p>
+<p>The packer produces <code>.mlsource</code>, <code>.mlsource.public.json</code> and <code>.mlsource.sha256</code>. It records file hashes and sizes, signs the manifest and verifies the archive. The same files, version and key produce the same package.</p>
+<p>Import the public key record and package in extension settings. Verify the public key’s SHA-256 fingerprint and allowed <code>extensionIds</code> through an independent channel, then approve the publisher and permissions. A <code>.public.json</code> file next to the archive helps you compare values, but does not prove that the publisher is trustworthy. Use a separate key for local tests.</p>
 <p><a id="en-publishing"></a></p>
 <h2 id="en-9-publishing-on-github">9. Publishing on GitHub</h2>
 <h3 id="en-manual-release-of-your-own-package">Manual release of your own package</h3>
-<p>The same rules apply to local publication and CI:</p>
+<p>For both manual releases and CI:</p>
 <ol>
 <li>Release a tested commit with a new SemVer version; do not overwrite a published version or its bytes.</li>
 <li>Preserve <code>extensionId</code>, source IDs and publisher key during ordinary updates. Handle key rotation or revocation explicitly; a new key supplied by a downloaded package cannot approve itself.</li>
@@ -806,25 +807,25 @@ test('factory is offline and search encodes input once', async () =&gt; {
 </ol>
 <pre><code class="language-powershell">node tools/sign_repository_index.mjs --repo owner/repo --serial 1 --tag v1.0.0 --package ./dist/my-sources.mlsource --key .keys/publisher.pem --output ./dist
 </code></pre>
-<p><code>serial</code> is a positive strictly increasing number for the repository; do not reset it when moving workflows. One serial must not designate different data. The index is valid for 30 days; publish fresh metadata before expiry. <code>extensions-index.ed25519</code> is a separate binary signature, not JSON/base64. Signing the index does not replace signing the package.</p>
-<p>If your repository does not publish through an automatic workflow, create a tag on the tested commit and a GitHub Release with five files:</p>
+<p><code>serial</code> must be a positive, strictly increasing repository number. Keep it increasing when moving workflows, and never sign different data under the same serial. The index expires after 30 days; refresh it before expiry. <code>extensions-index.ed25519</code> is a separate binary signature, not JSON or base64. Sign both the index and the package.</p>
+<p>For a manual release, create a tag on the tested commit and attach these five files to a GitHub Release:</p>
 <pre><code class="language-powershell">git tag v1.0.0
 git push origin v1.0.0
 gh release create v1.0.0 ./dist/my-sources.mlsource ./dist/my-sources.mlsource.public.json ./dist/my-sources.mlsource.sha256 ./dist/extensions-index.json ./dist/extensions-index.ed25519 --repo owner/repo --verify-tag --title "My Unofficial Sources 1.0.0" --notes "Signed source package."
 </code></pre>
-<p>For a prerelease, use a SemVer suffix and mark the GitHub release as a prerelease. Release notes should state source changes, the minimum application version, new permissions and known testing limitations. Publish the package, public key/record, checksum and signed index; never publish the private key.</p>
+<p>For a prerelease, add a SemVer suffix and mark the GitHub Release as a prerelease. Describe source changes, the minimum application version, new permissions and any testing gaps in the release notes. Publish the package, public key record, checksum and signed index. Keep the private key private.</p>
 <h3 id="en-release-automation">Release automation</h3>
-<p>In the separate repository, protect the main branch and configure a protected release environment of your own:</p>
+<p>The <a href="https://github.com/mangalaunch/MangaLaunch-Official-Extensions">official extension repository</a> has a release workflow you can read as an example. For your project, protect the main branch and create a protected release environment with your own keys and settings:</p>
 <ul>
 <li>Variable <code>MLSOURCE_PUBLISHER_KEY_ID</code>: the trusted publisher key identifier.</li>
 <li>Secret <code>MLSOURCE_SIGNING_KEY_BASE64</code>: base64 of the complete private Ed25519 PEM in PKCS#8 format. Prepare it locally and store it only as an environment secret.</li>
 <li>Add reviewers and release tag restrictions if needed.</li>
 </ul>
-<p>In your own workflow, use a SemVer tag <code>vVERSION</code> as the release trigger. For manual workflow dispatch, select the existing tag/ref and provide <code>version</code> without <code>v</code>; the tag must point at the workflow commit. The workflow reruns tests, signs the package and index, and publishes the five files. Index serial is computed as <code>GITHUB_RUN_NUMBER * 100 + GITHUB_RUN_ATTEMPT</code>.</p>
-<p>PR and main-branch checks produce test artifacts, not releases. The private release key is available only to the protected environment. Updates are installed after signature, version, ID ownership and user permission approval checks.</p>
+<p>In that workflow, a SemVer tag <code>vVERSION</code> triggers a release. For a manual run, choose an existing tag/ref and pass the version without <code>v</code>; the tag must point to the commit being run. The workflow reruns tests, signs the package and index, then publishes the five files. Its index serial is <code>GITHUB_RUN_NUMBER * 100 + GITHUB_RUN_ATTEMPT</code>. If you adapt it, preserve a strictly increasing serial across all releases.</p>
+<p>Pull-request and main-branch checks create test artifacts, not releases. Give only the protected release environment access to the private key. Before an update is installed, MangaLaunch checks signatures, versions, source-ID ownership and required user approvals.</p>
 <p><a id="en-api-reference"></a></p>
 <h2 id="en-10-api-v1-contract-reference">10. API v1 contract reference</h2>
-<p>These contracts describe extension data, not any particular website's responses. The normative field set is in <a href="assets/sdk/source-api.d.ts">source-api.d.ts</a> and the SDK schemas. Do not add undocumented manifest fields: its objects are checked strictly. An extra DTO field does not create a new UI feature.</p>
+<p>This reference describes the data exchanged with MangaLaunch. Website responses can have a different shape; the source converts them to these contracts. The full field definitions are in <code>source-api.d.ts</code> and the SDK schemas. Manifest objects reject unknown fields. Adding a DTO field does not add a UI feature.</p>
 <h3 id="en-101-manga-chapters-access-pages-and-recommendations">10.1. Manga, chapters, access, pages and recommendations</h3>
 <pre><code class="language-ts">type Json = null | boolean | number | string | Json[]
   | {[key: string]: Json};
@@ -917,7 +918,7 @@ interface RecommendationPageDto {
 </tbody>
 </table>
 <p>Other DTO strings are limited to 16384 characters without NUL; required strings cannot be empty/whitespace-only. General manga/chapter/page arrays accept up to 100000 entries, with additional response-size and execution-time limits. Duplicate chapter IDs reject the entire chapter list.</p>
-<p>getPopular/getLatest/search return <strong>only a manga array</strong>, without <code>{items, total, hasNextPage}</code>. A real empty array indicates the end; do not disguise parsing failures as pagination completion. getRecommendations uses a separate wrapper with hasNextPage. Do not return an incomplete chapter preview as a complete page.</p>
+<p><code>getPopular</code>, <code>getLatest</code> and <code>search</code> return a manga array, without an <code>{items, total, hasNextPage}</code> wrapper. An empty array ends pagination; a parsing failure must raise an error. <code>getRecommendations</code> has its own wrapper with <code>hasNextPage</code>. Return full reader images, not chapter previews.</p>
 <h3 id="en-102-context-and-http-operations">10.2. Context and HTTP operations</h3>
 <pre><code class="language-ts">interface HttpRequestDto {
   method: 'GET' | 'POST' | 'HEAD';
@@ -965,7 +966,7 @@ interface SourceContextV1 {
   };
 }
 </code></pre>
-<p>The application supplies sourceId, baseUrl and parameters. parameters contains signed manifest constants configuring a shared factory, not user settings or secrets. Make http/html/settings/auth calls only inside source methods.</p>
+<p>The application supplies <code>sourceId</code>, <code>baseUrl</code> and <code>parameters</code>. Use <code>parameters</code> for signed manifest constants that configure a shared factory, not user settings or secrets. Call HTTP, HTML, settings and authentication APIs only inside source methods.</p>
 <table>
 <thead>
 <tr>
@@ -1013,10 +1014,10 @@ const response = await ctx.http.request({
 </code></pre>
 <p>HEAD can also probe an allowed image origin and does not return image content. GET does not accept a body. GET/HEAD follow up to 5 redirects with fresh URL/session checks; POST redirects are not replayed automatically.</p>
 <p>Successful responses contain the final url, status, body and safe lowercase headers: content-type, content-length, cache-control, etag, last-modified, retry-after, location, x-total-count, cf-mitigated. Set-Cookie is not exposed to the script; the application applies cookies separately within the allowed session.</p>
-<p>responseType=text returns a string; json returns a parsed JSON value; bytes returns numbers from 0 to 255. HTTP encoding is respected, including declared Windows-1251. Preserve meaningful errors for unsupported encodings or malformed JSON rather than guessing the response shape.</p>
+<p><code>responseType: "text"</code> returns a string, <code>"json"</code> a parsed JSON value, and <code>"bytes"</code> an array of numbers from 0 to 255. The host respects the declared HTTP encoding, including Windows-1251. Preserve errors for unsupported encodings or malformed JSON.</p>
 <p>Non-2xx responses throw SourceHostError: 401 → auth_required, 403 → access_denied, 404 → not_found, 429 → rate_limited, others → invalid_response; <code>cf-mitigated: challenge</code> produces challenge_required. Parse a safe error.body from your own endpoint when needed to identify access restrictions. Do not expect a normal response.status=404 instead of an exception.</p>
 <h3 id="en-103-every-html-projection-field">10.3. Every HTML projection field</h3>
-<p>A projection node has <strong>exactly one output mode</strong>: fields, text=true, attr, html=true, outerHtml=true, tagName=true or containsText. Other fields control selection. Set baseUrl at the top level of ctx.html.extract; nested fields inherit it.</p>
+<p>Each projection node has exactly one output mode: <code>fields</code>, <code>text=true</code>, <code>attr</code>, <code>html=true</code>, <code>outerHtml=true</code>, <code>tagName=true</code> or <code>containsText</code>. The remaining fields control which nodes are selected. Set <code>baseUrl</code> on the top-level <code>ctx.html.extract</code> call; nested fields inherit it.</p>
 <table>
 <thead>
 <tr>
@@ -1177,7 +1178,7 @@ const response = await ctx.http.request({
 </table>
 <p>allowSubdomains applies to HTTP/image and <strong>does not expand authOrigins</strong>. Cookies and credentials require exact allowed origins. Use normalized HTTPS URLs for IDNs. Different ports mean different origins.</p>
 <p>cookieDefaults declares up to 16 public preference cookies with origin/name/value and optional path (default /). They apply only to matching origin/path. Never place user sessions or passwords there.</p>
-<p>media.transform supports only algorithm=xor, key (1–256 bytes in 0–255), origin, pathPrefix, stemLength (1–256), markerOffset (0–255) and marker (one character). It is a shared algorithm with site-format parameters and does not expand image grants. Do not use it instead of fixing an incorrect URL or authentication.</p>
+<p><code>media.transform</code> supports <code>algorithm=xor</code>, <code>key</code> (1–256 bytes, each 0–255), <code>origin</code>, <code>pathPrefix</code>, <code>stemLength</code> (1–256), <code>markerOffset</code> (0–255) and <code>marker</code> (one character). These parameters describe a supported website image format; they do not grant access to more image origins. Check the URL and authentication before adding a transform.</p>
 <h3 id="en-105-settings-and-authentication-fields">10.5. Settings and authentication fields</h3>
 <p>settings.version is an integer 1–1000; fields contains up to 32 definitions. Each has key, label, type and default. key matches <code>[a-z][A-Za-z0-9_.-]{0,63}</code>; source/network are reserved; label is 1–128 characters.</p>
 <table>
@@ -1206,7 +1207,7 @@ const response = await ctx.http.request({
 </tr>
 </tbody>
 </table>
-<p>roles.titleLanguage references a declared enum key. Optional legacyNamespace supports existing source-owned settings and does not share access between sources. ctx.settings cannot read arbitrary application settings. Respect types and declared constraints before writing; set returns Promise<void>.</void></p>
+<p><code>roles.titleLanguage</code> references a declared enum key. <code>legacyNamespace</code> is optional and supports existing source-owned settings; it does not share settings between sources. <code>ctx.settings</code> cannot read arbitrary application settings. Validate types and constraints before writing; <code>set</code> returns <code>Promise&lt;void&gt;</code>.</p>
 <p>auth contains profileId, loginUrl, cookieOrigins (up to 16), sessionExport and optional rules. With features.authCompletion=true, both completionUrl and successUrl are required; otherwise omit both.</p>
 <table>
 <thead>
@@ -1247,10 +1248,10 @@ const response = await ctx.http.request({
 </tbody>
 </table>
 <p>Rule arrays contain up to 16 strings of 1–128 characters; tokenType is up to 32. sessionExport.headers allows Cookie, Authorization, X-XSRF-TOKEN, X-CSRF-TOKEN; values allows accessToken and csrfToken. Export only what is necessary.</p>
-<p>ctx.auth.status() returns authorized/revision for the current source. getSession({url}) returns a snapshot for that specific allowed URL. headers, cookieHeader, accessToken and csrfToken are available only within allowed exports; optional fields can be absent. Check required values instead of converting undefined to a string. Snapshots change on logout/account changes; ordinary HTTP requests obtain a fresh session automatically.</p>
+<p><code>ctx.auth.status()</code> returns <code>authorized</code> and <code>revision</code> for the current source. <code>getSession({url})</code> returns a snapshot for the specified allowed URL. <code>headers</code>, <code>cookieHeader</code>, <code>accessToken</code> and <code>csrfToken</code> are present only when the manifest permits their export. Check optional values before use; do not turn <code>undefined</code> into a string. Logging out or switching accounts changes the snapshot. Ordinary HTTP requests obtain the current session automatically.</p>
 <p>min/max apply only to integer, maxLength only to string, and options only to enum. Without explicit bounds, integer uses -1000000…1000000 and string uses maxLength=4096. String settings reject control characters; defaults undergo the same validation as user values.</p>
 <h3 id="en-106-errors-and-diagnostics">10.6. Errors and diagnostics</h3>
-<p>SourceHostError is an Error with code and phase, optionally httpStatus, retryAfterSeconds, access and body. phase is a short stage name, not a stack/HTML/token. Preserve original error codes; add code/phase to Error for source-defined failures.</p>
+<p><code>SourceHostError</code> is an <code>Error</code> with <code>code</code> and <code>phase</code>. It may also contain <code>httpStatus</code>, <code>retryAfterSeconds</code>, <code>access</code> and <code>body</code>. Use a short stage name for <code>phase</code>, not a stack trace, HTML or token. Preserve codes from host errors; add <code>code</code> and <code>phase</code> when throwing your own.</p>
 <p>The complete API v1 code union:</p>
 <pre><code class="language-text">cancelled, timeout, offline, network, rate_limited, auth_required,
 challenge_required, not_found, title_not_found, chapter_not_found,
@@ -1258,22 +1259,23 @@ chapter_unavailable, parse_error, invalid_response, permission_denied,
 unsupported, incompatible_api, resource_limit, runtime_crashed,
 auth_session_changed, source_unavailable, access_denied
 </code></pre>
-<p>not_found is generic absence; title_not_found/chapter_not_found identify the missing entity. chapter_unavailable with access carries reading restrictions. permission_denied means a grant/call-contract violation; unsupported means an unsupported feature; resource_limit means an exhausted budget. Cancellation and session changes are not successful empty results.</p>
-<p>ctx.log.info accepts event plus an object of string/number/boolean values only. Do not send large responses, Error objects, cookie arrays or personal data.</p>
+<p><code>not_found</code> reports a missing resource; <code>title_not_found</code> and <code>chapter_not_found</code> identify it more precisely. <code>chapter_unavailable</code> with <code>access</code> describes a reading restriction. <code>permission_denied</code> indicates a permission or call-contract violation; <code>unsupported</code> an unavailable feature; <code>resource_limit</code> an exhausted budget. Report cancellation and session changes as errors rather than empty results.</p>
+<p><code>ctx.log.info</code> accepts an event name and an object whose values are strings, numbers or booleans. Keep responses, <code>Error</code> objects, cookies and personal data out of logs.</p>
 <h3 id="en-107-signed-repository-index-contract">10.7. Signed repository index contract</h3>
 <p>An index contains schemaVersion=1, repositoryId (lowercase owner/repo), serial, generatedAt, expiresAt, publisherKeyId, channel and packages. channel is stable/prerelease; timestamps use UTC seconds and Z.</p>
 <p>Each packages entry contains extensionId, version, releaseTag, assetName, size, sha256, sourceApiVersion, minRuntimeAbi, minAppVersion, sourceIds and channel. These are checked against an independently verified archive. Do not replace assetName with an external download URL. The schema permits up to 128 packages, but the provided sign_repository_index.mjs creates an index for one supplied archive.</p>
-<p>The canonical manifest uses Ed25519 with <code>MangaLaunch source package v1\n</code>; the index uses <code>MangaLaunch source repository v1\n</code>. Their signatures are not interchangeable. Use the pack/sign tools instead of manually concatenating JSON. An expired index prevents metadata updates, while installed packages keep working offline. An old archive or removing a repository cannot bypass key revocation or pinning.</p></article><article class="guide-article" data-locale-content="ru" hidden="" lang="ru"><p>Разделы: <a href="#ru-source-example">полный пример источника</a> · <a href="#ru-filter-contract">контракт фильтров</a> · <a href="#ru-publishing">публикация</a> · <a href="#ru-api-reference">справочник DTO, ctx и manifest</a>.</p>
-<p>Руководство по Source API v1: создание своего пакета, реализация источника, проверка, подпись и публикация. Расширение — подписанный файл <code>.mlsource</code>, содержащий один или несколько источников. Источник — отдельная регистрация сайта со своим ID, настройками и сессией.</p>
-<p>Контракт задают <a href="assets/sdk/source-api.d.ts">типы API</a>, <a href="assets/sdk/manifest.schema.json">схема manifest</a> и <a href="assets/sdk/repository-index.schema.json">схема индекса репозитория</a>. Примеры ниже используют вымышленный API <code>example.org</code>: это образец структуры, а не готовый источник реального сайта.</p>
+<p>The canonical manifest is signed with Ed25519 using the prefix <code>MangaLaunch source package v1\n</code>; the index uses <code>MangaLaunch source repository v1\n</code>. The signatures are not interchangeable. Use the packer and index signer to produce the canonical bytes. When an index expires, metadata updates stop, but installed packages can still run offline. An older archive or removing a repository does not bypass key revocation or pinning.</p></article><article class="guide-article" data-locale-content="ru" hidden="" lang="ru"><p>Быстрый переход: <a href="#ru-source-example">пример источника</a> · <a href="#ru-filter-contract">фильтры</a> · <a href="#ru-publishing">публикация</a> · <a href="#ru-api-reference">справочник API</a>.</p>
+<p>Расширение — подписанный пакет <code>.mlsource</code> с одним или несколькими источниками. Каждый источник подключает к MangaLaunch отдельный сайт и имеет свой ID, настройки и сессию входа.</p>
+<p>Пример работающего проекта — <a href="https://github.com/mangalaunch/MangaLaunch-Official-Extensions">MangaLaunch Official Extensions</a>: модули источников, регистрации, тесты и процессы выпуска. В примерах ниже используется вымышленный API <code>example.org</code>; адаптируйте адреса и парсеры под свой сайт.</p>
+<p>Названия и типы полей сверяйте с <a href="assets/sdk/source-api.d.ts">типами API</a>, <a href="assets/sdk/manifest.schema.json">схемой manifest</a> и <a href="assets/sdk/repository-index.schema.json">схемой индекса репозитория</a>.</p>
 <h2 id="ru-1">1. Подготовка и структура</h2>
 <p>Нужен Node.js 22 или новее. Команды выполняются из корня репозитория расширений.</p>
 <pre><code class="language-powershell">npm ci --ignore-scripts
 npm rebuild esbuild
 npm test
 </code></pre>
-<p>Изучите ответы сайта: каталог и пагинацию, поиск, фильтры, карточку, главы, страницы, рекомендации, вход, перенаправления и домены изображений. Предпочитайте доступный структурированный API; если его нет, используйте HTML-проекции.</p>
-<p>Для отдельного пакета скопируйте <a href="#ru-starter-files">шаблон</a> в собственный каталог проекта и замените фиктивные URL, ID, лицензию и реализацию:</p>
+<p>До написания парсера проверьте, как сайт отдаёт каталог, следующие страницы, поиск, фильтры, карточку тайтла, главы, изображения и рекомендации. Отдельно разберите вход, перенаправления и домены изображений. Если есть структурированный API, используйте его; в остальных случаях извлекайте нужные поля из HTML.</p>
+<p>Для нового пакета скопируйте <a href="#ru-starter-files">шаблон</a> в каталог проекта. Замените адреса, ID, лицензию и реализацию источника:</p>
 <pre><code class="language-text">my-sources/
   manifest.json
   LICENSE
@@ -1283,11 +1285,11 @@ npm test
   tests/
     source.test.mjs
 </code></pre>
-<p>В существующем наборе источников добавьте модуль в <code>src/sources/</code> или общую фабрику в <code>src/engines/</code>, регистрацию в <code>src/definitions.mjs</code> и соответствие ID → фабрика в <code>src/index.mjs</code>. Обновите тесты регистраций и модуля.</p>
-<p>Выберите собственные название пакета, extensionId, ключ издателя и ID источников. Контент NSFW выпускайте в явно обозначенном пакете и задавайте таким источникам isNsfw: true.</p>
-<p>ID источников, тайтлов и глав должны быть стабильными: от них зависят библиотека, история и прогресс. Смена домена не означает смену ID. Для передачи существующего sourceId нужна версия приложения с отдельным подтверждением передачи: сначала обновите установленный пакет-владелец, чтобы его подписанный manifest больше не объявлял источник, затем импортируйте новый пакет и подтвердите передачу настроек и сессий входа. Действующее объявление защищено даже у выключенного пакета. Удаление владельца не освобождает его ID; при необходимости переустановите его обновлённый пакет. Обычная установка никогда не передаёт владение молча.</p>
-<h3 id="ru-starter-files">Шаблон и инструменты</h3><p>Скачайте файлы, сохранив относительные пути. Пример использует вымышленный API: адаптируйте manifest и реализацию перед публикацией. Универсальный упаковщик читает ваш manifest, а не готовый список источников. Инструменты запускаются локально на Node.js и не входят в runtime расширения. Примеру не нужны внешние runtime-зависимости или компиляция.</p><ul class="starter-files"><li><a download="" href="assets/extension-kit/templates/json-api/manifest.json">templates/json-api/manifest.json</a></li><li><a download="" href="assets/extension-kit/templates/json-api/src/index.mjs">templates/json-api/src/index.mjs</a></li><li><a download="" href="assets/extension-kit/tools/generate-key.mjs">tools/generate-key.mjs</a></li><li><a download="" href="assets/extension-kit/tools/pack_extension.mjs">tools/pack_extension.mjs</a></li><li><a download="" href="assets/extension-kit/tools/package_format.mjs">tools/package_format.mjs</a></li><li><a download="" href="assets/extension-kit/tools/sign_repository_index.mjs">tools/sign_repository_index.mjs</a></li><li><a download="" href="assets/extension-kit/src/core/recent.mjs">src/core/recent.mjs</a></li><li><a download="" href="assets/extension-kit/LICENSE.txt">LICENSE.txt</a></li></ul><p>Разместите два файла шаблона в <code>my-sources/manifest.json</code> и <code>my-sources/src/index.mjs</code>. Инструменты сохраните в <code>tools/</code> рядом с проектом. Добавьте свой <code>my-sources/LICENSE</code>. Упаковщику и подписывателю индекса нужен <code>tools/package_format.mjs</code>. Храните закрытый ключ вне публичных файлов. Эти инструменты создают три файла пакета и два файла подписанного индекса, описанные далее.</p><h2 id="ru-2-manifest">2. Manifest отдельного пакета</h2>
-<p>Сохраните как <code>manifest.json</code>. <code>files</code> здесь является заготовкой: упаковщик заполнит размеры и SHA-256 файлов и создаст подпись. Не редактируйте подписанный manifest вручную.</p>
+<p>В официальном репозитории модули источников находятся в <code>src/sources/</code>, общие фабрики — в <code>src/engines/</code>, регистрации — в <code>src/definitions.mjs</code>, а соответствия ID и фабрик — в <code>src/index.mjs</code>. Такая структура удобна для набора источников, но API её не требует. Для одного источника достаточно структуры выше. Для каждой регистрации и парсера добавьте тесты.</p>
+<p>Задайте собственные название пакета, <code>extensionId</code>, ключ издателя и ID источников. Для NSFW-источников укажите <code>isNsfw: true</code> и выпускайте их в явно обозначенном пакете.</p>
+<p>Сохраняйте ID источников, тайтлов и глав: по ним MangaLaunch связывает библиотеку, историю и прогресс. При смене домена ID менять не нужно. Чтобы передать существующий <code>sourceId</code> другому пакету, сначала обновите установленный пакет-владелец: его подписанный manifest больше не должен содержать этот источник. Затем импортируйте принимающий пакет в версии приложения с поддержкой передачи источников и подтвердите перенос настроек и сессий входа. Отключение и удаление пакета не освобождают его ID; при необходимости переустановите обновлённый пакет-владелец. Без подтверждения владение не передаётся.</p>
+<h3 id="ru-starter-files">Шаблон и инструменты</h3><p>Скачайте эти файлы, сохранив относительные пути. Инструменты запускаются локально на Node.js и не входят в среду выполнения источника. Шаблону не нужны внешние зависимости во время работы или компиляция. Упаковщик читает manifest вашего проекта.</p><ul class="starter-files"><li><a download="" href="assets/extension-kit/templates/json-api/manifest.json">templates/json-api/manifest.json</a></li><li><a download="" href="assets/extension-kit/templates/json-api/src/index.mjs">templates/json-api/src/index.mjs</a></li><li><a download="" href="assets/extension-kit/tools/generate-key.mjs">tools/generate-key.mjs</a></li><li><a download="" href="assets/extension-kit/tools/pack_extension.mjs">tools/pack_extension.mjs</a></li><li><a download="" href="assets/extension-kit/tools/package_format.mjs">tools/package_format.mjs</a></li><li><a download="" href="assets/extension-kit/tools/sign_repository_index.mjs">tools/sign_repository_index.mjs</a></li><li><a download="" href="assets/extension-kit/src/core/recent.mjs">src/core/recent.mjs</a></li><li><a download="" href="assets/extension-kit/LICENSE.txt">LICENSE.txt</a></li></ul><p>Разместите файлы шаблона в <code>my-sources/manifest.json</code> и <code>my-sources/src/index.mjs</code>, добавьте <code>my-sources/LICENSE</code>. Инструменты положите в соседний каталог <code>tools/</code>; упаковщику и утилите подписи индекса нужен <code>tools/package_format.mjs</code>. Закрытый ключ храните вне публикуемых файлов. Описанные ниже команды создают три файла пакета и два файла индекса репозитория.</p><h2 id="ru-2-manifest">2. Manifest отдельного пакета</h2>
+<p>Сохраните пример как <code>manifest.json</code>. В шаблоне оставьте <code>files</code> пустым: упаковщик заполнит размеры файлов и SHA-256 перед подписью. Изменение уже подписанного manifest нарушит подпись.</p>
 <pre><code class="language-json">{
   "schemaVersion": 1,
   "extensionId": "example.sources",
@@ -1338,7 +1340,7 @@ npm test
   }]
 }
 </code></pre>
-<p>Правила декларации:</p>
+<p>При заполнении manifest:</p>
 <ul>
 <li><code>capabilities</code> и <code>features</code> должны соответствовать реально реализованным методам. Для источника только с метаданными укажите <code>metadataOnly: true</code>; не объявляйте доступное чтение.</li>
 <li><code>origins</code> — HTML/API, <code>imageOrigins</code> — обложки, флаги языков и страницы, <code>authOrigins</code> — домены, которым разрешена авторизация. Указывайте точные HTTPS origins без путей. Для поддоменов требуется явное <code>allowSubdomains</code>.</li>
@@ -1350,8 +1352,8 @@ npm test
 </ul>
 <p><a id="ru-source-example"></a></p>
 <h2 id="ru-3">3. Реализация источника</h2>
-<p>Точка входа — синхронная <code>export default function createSource(ctx)</code>, возвращающая объект методов. Импорты и создание фабрики не выполняют HTTP, HTML, чтение настроек или авторизацию: пакет проверяется и без сети.</p>
-<p>Runtime предоставляет JavaScript, Promise, URL/URLSearchParams и UTF-8 TextEncoder/TextDecoder. Node.js, <code>process</code>, <code>require</code>, файловая система, сокеты и браузерный DOM недоступны. Импорты — относительные пути к подписанным файлам пакета; удалённые зависимости не загружаются.</p>
+<p>Точка входа — синхронная <code>export default function createSource(ctx)</code>, которая возвращает методы источника. Во время импорта и создания фабрики не выполняйте запросы HTTP, разбор HTML, чтение настроек или авторизацию: приложение проверяет пакет в том числе без сети.</p>
+<p>В среде выполнения доступны JavaScript, <code>Promise</code>, <code>URL</code>/<code>URLSearchParams</code> и UTF-8 <code>TextEncoder</code>/<code>TextDecoder</code>. Node.js, <code>process</code>, <code>require</code>, файловой системы, сокетов и браузерного DOM нет. Зависимости импортируются по относительным путям к подписанным файлам пакета; удалённые импорты недоступны.</p>
 <table>
 <thead>
 <tr>
@@ -1403,7 +1405,7 @@ npm test
 </tr>
 </tbody>
 </table>
-<p>Рабочая основа для фиктивного JSON API, файл <code>src/index.mjs</code>:</p>
+<p>Источник для примера JSON API. Сохраните его как <code>src/index.mjs</code>:</p>
 <pre><code class="language-js">const invalid = () =&gt; Object.assign(
   Error('Unexpected API response.'), {code: 'parse_error', phase: 'parse'},
 );
@@ -1506,13 +1508,13 @@ export default function createSource(ctx) {
   };
 }
 </code></pre>
-<p>Здесь API возвращает <code>{items: [...]}</code> для каталогов и глав, объект тайтла для details, <code>{images: [...]}</code> для страниц и <code>{items: [...], hasNextPage: boolean}</code> для рекомендаций. Замените этот контракт реальными ответами сайта.</p>
-<p>Все результаты — JSON-данные. Nullable-поля DTO возвращайте как <code>null</code>, массивы — как массивы; не передавайте <code>undefined</code>, <code>NaN</code>, функции и DOM-объекты. URL изображений должны быть абсолютными. Пагинация начинается с 1, <code>PageDto.index</code> — с 0, без пропусков и дубликатов. ID глав уникальны; номера конечные, дробные номера сохраняются. Даты — ISO-8601 с часовым поясом (рекомендуется UTC) либо <code>null</code>.</p>
-<p>В <code>ChapterDto.access</code> сохраняйте <code>available</code>, <code>temporarilyUnavailable</code> или <code>paid</code> вместе с доступными <code>availableAt</code>, <code>priceLabel</code> и <code>message</code>. Платный доступ не должен превращаться в общую сетевую ошибку. Metadata-only источник реализует обязательные методы глав и страниц, возвращая пустые массивы.</p>
+<p>В примере сайт возвращает <code>{items: [...]}</code> для каталогов и глав, объект тайтла для карточки, <code>{images: [...]}</code> для страниц и <code>{items: [...], hasNextPage: boolean}</code> для рекомендаций. Парсер должен учитывать реальные ответы вашего сайта.</p>
+<p>Возвращайте JSON-данные: <code>null</code> для отсутствующих полей, массивы для списков. Не передавайте <code>undefined</code>, <code>NaN</code>, функции и DOM-объекты. URL изображений должны быть абсолютными. Нумерация страниц каталога начинается с 1, <code>PageDto.index</code> — с 0, без пропусков и дубликатов. ID глав должны быть уникальными, номера — конечными; дробные номера сохраняйте. Даты передавайте в ISO-8601 с часовым поясом, желательно UTC, либо как <code>null</code>.</p>
+<p>В <code>ChapterDto.access</code> различайте <code>available</code>, <code>temporarilyUnavailable</code> и <code>paid</code>. Если сайт отдаёт <code>availableAt</code>, <code>priceLabel</code> и <code>message</code>, сохраняйте их. Платный доступ передавайте как ограничение чтения, а не сетевую ошибку. Источник только с метаданными тоже реализует обязательные методы глав и страниц, но возвращает пустые массивы.</p>
 <h2 id="ru-4-http-html">4. HTTP, HTML и изображения</h2>
-<p>Все сетевые запросы выполняйте через <code>ctx.http.request</code>. Сессия и разрешённые параметры транспорта применяются приложением. Проверка HTTPS, origin, порта и разрешений действует также на каждом перенаправлении.</p>
-<p>Не подставляйте произвольные <code>Cookie</code>, <code>Authorization</code>, <code>Host</code> или <code>User-Agent</code> в headers. Используйте декларацию сессии и <code>userAgentProfile</code>: <code>app</code>, <code>browser</code>, <code>reader</code>, <code>mobileSafari</code>. <code>Referer</code> и <code>Origin</code> должны относиться к разрешённым origins. Публичные API-заголовки допустимы в пределах поддерживаемой сетевой политики.</p>
-<p>Для HTML предпочтительна одна вложенная проекция вместо множества последовательных вызовов:</p>
+<p>Отправляйте запросы через <code>ctx.http.request</code>. Приложение подставляет сессию источника и применяет сетевые разрешения. На каждом перенаправлении оно заново проверяет HTTPS, origin, порт и разрешения.</p>
+<p>Авторизацию объявляйте в manifest; не задавайте <code>Cookie</code>, <code>Authorization</code>, <code>Host</code> или <code>User-Agent</code> вручную. Для <code>userAgentProfile</code> выберите <code>app</code>, <code>browser</code>, <code>reader</code> или <code>mobileSafari</code>. <code>Referer</code> и <code>Origin</code> должны относиться к разрешённым origins. Поддерживаемые публичные API-заголовки перечислены в справочнике HTTP ниже.</p>
+<p>Извлекайте связанные поля HTML одной вложенной проекцией:</p>
 <pre><code class="language-js">const response = await ctx.http.request({
   method: 'GET', url: new URL('/catalog', ctx.baseUrl).href,
   responseType: 'text',
@@ -1526,9 +1528,9 @@ const cards = await ctx.html.extract(response.body, {
   },
 });
 </code></pre>
-<p>Выполняйте пример внутри асинхронного метода источника; добавьте permission <code>html</code>. Результат проекции — данные, а не живой DOM. Доступны <code>fields</code>, <code>all</code>, <code>required</code>, <code>text</code>, <code>attr</code>, <code>absoluteUrl</code>, <code>html</code>, <code>outerHtml</code>, <code>ascend</code>, <code>nextSibling</code>, <code>directChildren</code> и <code>tagName</code>.</p>
-<p><code>exclude</code> убирает служебные дочерние узлы из текстовой проекции; <code>normalizeWhitespace: false</code> сохраняет внутренние пробелы. <code>containsText: ["term"]</code> возвращает boolean для 1–8 буквальных подстрок длиной до 256 символов. Этот режим не совмещается с другими режимами значения и не исполняет regex.</p>
-<p>В <code>getPages</code> возвращайте URL, а не байты или base64 изображений. Загрузкой обложек и страниц, кешем, заголовками и сессиями занимается media-брокер. Не отрезайте подписанные параметры URL CDN. Для поддержанного преобразования изображения есть декларативный <code>media.transform</code> — произвольный decoder из manifest не исполняется.</p>
+<p>Выполняйте пример внутри асинхронного метода источника и добавьте разрешение <code>html</code>. Проекция возвращает данные, а не DOM-узлы. Доступны <code>fields</code>, <code>all</code>, <code>required</code>, <code>text</code>, <code>attr</code>, <code>absoluteUrl</code>, <code>html</code>, <code>outerHtml</code>, <code>ascend</code>, <code>nextSibling</code>, <code>directChildren</code> и <code>tagName</code>.</p>
+<p><code>exclude</code> исключает подходящие дочерние узлы из текстовой проекции. <code>normalizeWhitespace: false</code> сохраняет внутренние пробелы. <code>containsText: ["term"]</code> проверяет наличие 1–8 буквальных подстрок длиной до 256 символов и возвращает boolean. Регулярные выражения не выполняются; совмещать этот режим с другим режимом результата в одном узле нельзя.</p>
+<p><code>getPages</code> возвращает URL изображений. Медиа-брокер приложения загружает и кеширует обложки и страницы с нужными заголовками и сессией. Сохраняйте подписанные параметры URL CDN. Поддерживаемые преобразования изображений задаются через <code>media.transform</code>; произвольный декодер из manifest не выполняется.</p>
 <h2 id="ru-5">5. Фильтры, настройки и авторизация</h2>
 <p><a id="ru-filter-contract"></a></p>
 <h3 id="ru-_1">Фильтры: полный контракт</h3>
@@ -1598,12 +1600,12 @@ interface SourceQueryDto {
 </tr>
 </tbody>
 </table>
-<p>В FilterOptionDto <code>value</code> — строковый API ID, <code>label</code> — непустое отображаемое название, <code>caption</code> — пояснение или <code>null</code>. Числовой ID сайта тоже передаётся строкой, например <code>"42"</code>; преобразуйте его в число только при построении запроса, если API этого требует. Values должны быть уникальны внутри фильтра. Одинаковые подписи с разными values технически возможны, но делают чипы неоднозначными.</p>
-<p>Пустой <code>option.value: ""</code> допускается для нейтрального варианта вроде Any. В singleSelect/sort такой выбор фактически очищает значение; не используйте пустую строку как значимый ID. В defaultValues пустые строки недопустимы. У toggle/text options не используются интерфейсом.</p>
-<p>Всегда возвращайте поля из контракта явно, включая <code>caption: null</code>, <code>options: []</code> и <code>defaultValues: []</code>, когда они пусты. Часть пропущенных массивов принимается как пустая для совместимости, но это не основание возвращать произвольную форму DTO.</p>
+<p>В <code>FilterOptionDto</code> поле <code>value</code> содержит строковый ID, <code>label</code> — непустое название для пользователя, <code>caption</code> — пояснение или <code>null</code>. Числовые ID сайта тоже передавайте строками, например <code>"42"</code>; преобразуйте их только при запросе к API, которому нужно число. Значения внутри фильтра должны быть уникальными. Разным значениям лучше давать разные подписи, иначе чипы будет трудно различить.</p>
+<p>У нейтрального варианта вроде «Любой» допускается <code>value: ""</code>. В <code>singleSelect</code> и <code>sort</code> он очищает выбор. Пустая строка не может быть значимым ID или входить в <code>defaultValues</code>. Для <code>toggle</code> и <code>text</code> интерфейс не использует <code>options</code>.</p>
+<p>Возвращайте объявленные поля явно: <code>caption: null</code>, <code>options: []</code> и <code>defaultValues: []</code>, когда значений нет. Некоторые пропущенные массивы принимаются для совместимости, но в новом источнике лучше возвращать полный DTO.</p>
 <p>Ограничения декодирования: до <strong>256 фильтров</strong>, до <strong>10000 options</strong> и <strong>10000 defaultValues</strong> на фильтр. Строки key/label/value/caption — до 16384 символов без NUL; обязательные строки не должны состоять из пробелов. Выбирайте короткие машинные ключи, особенно для filterBindings, где длина ссылки на ключ ограничена 128 символами. Дубли ключей, дубли values, неизвестный kind, неверный supportsDirection и неподдерживаемые defaults отклоняют весь список.</p>
 <h4 id="ru-_3">Как передаётся выбор каждого типа</h4>
-<p>В <code>selectedFilters</code> нет boolean, number, null, вложенных объектов или одиночных строк: <strong>значение каждого ключа — string[]</strong>. Options.value и key чувствительны к регистру; не локализуйте и не перекодируйте их.</p>
+<p>Значение каждого ключа в <code>selectedFilters</code> — <code>string[]</code>. Boolean, числа, <code>null</code>, вложенные объекты и одиночные строки здесь недопустимы. Ключи и значения вариантов чувствительны к регистру; не переводите и не кодируйте их для URL до передачи источнику.</p>
 <table>
 <thead>
 <tr>
@@ -1645,10 +1647,10 @@ interface SourceQueryDto {
 </tr>
 </tbody>
 </table>
-<p>Текстовый редактор может отображать термины чипами и соединять активные термины через <code>,</code>. На wire это всё ещё одна строка. Нет универсального контракта CSV, кавычек, списка авторских ID или поискового синтаксиса: источник определяет семантику и поясняет её в caption. Не теряйте алиасы вроде <code>name | alias</code>.</p>
-<p>Для triState префикс добавляется <strong>только в выбранное значение</strong>, а не в options.value. Декларация содержит <code>value: "action"</code>, запрос — <code>"include:action"</code>. Используйте точные префиксы <code>include:</code> и <code>exclude:</code>; <code>-action</code>, <code>!action</code>, boolean и <code>ignore:action</code> не являются контрактом. После удаления префикса сохраните исходный ID целиком, в том числе остальные двоеточия.</p>
-<p>UI не выбирает одновременно include и exclude одного варианта. Источник должен устойчиво обрабатывать старые presets/позиции: убрать дубли, проверить values по актуальным options и определить политику конфликта. В примере ниже включение имеет приоритет над исключением; это политика примера, а не скрытое правило сервера.</p>
-<p>Полный входной запрос для всех типов:</p>
+<p>Текстовый редактор может показывать термины чипами и соединять активные термины через <code>,</code>, но источник всё равно получает одну строку. Общего формата CSV, списка ID авторов или поискового синтаксиса нет. Разберите строку в источнике, а правила объясните в <code>caption</code>. Сохраняйте алиасы вроде <code>name | alias</code> целиком.</p>
+<p>Для <code>triState</code> объявляйте значение без префикса, например <code>value: "action"</code>. Выбор придёт как <code>"include:action"</code> или <code>"exclude:action"</code>. Поддерживаются только эти префиксы; <code>-action</code>, <code>!action</code>, boolean и <code>ignore:action</code> недопустимы. Удаляйте только первый префикс и сохраняйте оставшуюся часть ID вместе с возможными двоеточиями.</p>
+<p>В интерфейсе нельзя одновременно включить и исключить один вариант. В старых сохранённых фильтрах конфликты или удалённые варианты всё же возможны: убирайте дубли, сверяйте значения с актуальными вариантами и определите правило разрешения конфликтов. В примере ниже приоритет у включения; для вашего сайта может понадобиться другое правило.</p>
+<p>Запрос со всеми типами фильтров:</p>
 <pre><code class="language-json">{
   "searchTerm": "A &amp; B",
   "page": 2,
@@ -1694,9 +1696,9 @@ interface SourceQueryDto {
 </tr>
 </tbody>
 </table>
-<p>Приложение использует defaults для отображения multiSelect, но <strong>не разворачивает их автоматически в selectedFilters для источника</strong>. Источник обязан применить defaults при отсутствии ключа. Различайте <code>selectedFilters.languages ?? defaults</code> и <code>selectedFilters.languages?.length ? ... : defaults</code>: второй вариант ошибочно заменяет явный <code>[]</code>.</p>
-<p>Для остальных kind нет декларативных начальных значений: <code>defaultValue</code>, <code>selected</code>, <code>checked</code>, <code>min</code>/<code>max</code> не являются полями FilterDto. Начальную сортировку задают реализации getPopular/getLatest/search, а не defaultValues сортировки.</p>
-<p>Приложение сохраняет явные пустые массивы. Записи с непустым массивом, состоящим только из пробельных строк, перед запросом убираются. Не используйте такую запись как особый управляющий сигнал.</p>
+<p>MangaLaunch использует значения по умолчанию для отображения <code>multiSelect</code>, но не добавляет их в <code>selectedFilters</code>. Применяйте их в источнике, когда ключ отсутствует. Используйте <code>selectedFilters.languages ?? defaults</code>: проверка длины ошибочно заменит явный <code>[]</code>, которым пользователь очистил фильтр.</p>
+<p>У остальных типов нет начального выбора через декларацию. <code>defaultValue</code>, <code>selected</code>, <code>checked</code> и <code>min/max</code> не входят в <code>FilterDto</code>. Начальный порядок задавайте в <code>getPopular</code>, <code>getLatest</code> и <code>search</code>, а не в <code>defaultValues</code> фильтра сортировки.</p>
+<p>Явные пустые массивы передаются источнику без изменений. Записи с непустым массивом из одних пробельных строк удаляются перед запросом; не используйте их как управляющий сигнал.</p>
 <h4 id="ru-_4">Маршрутизация каталога и сортировка</h4>
 <ul>
 <li>Пустой searchTerm и пустой selectedFilters: обзор вызывает getPopular, последние — getLatest.</li>
@@ -1707,7 +1709,7 @@ interface SourceQueryDto {
 <li>После смены поиска/фильтров пагинация начинается с 1. Не храните один общий cursor для разных выборок или одновременных операций; если API использует cursors, изолируйте их по нормализованному запросу.</li>
 </ul>
 <h4 id="ru-_5">Полный модуль обработки всех шести типов</h4>
-<p>Сохраните как <code>src/catalog-filters.mjs</code>. Имена параметров сайта (<code>language[]</code>, <code>genre[]</code> и другие) здесь вымышленные; замените их по реальному API. Повторяемые query-параметры добавляются через append, а не превращаются в строку через String(array).</p>
+<p>Сохраните следующий пример как <code>src/catalog-filters.mjs</code>. Замените <code>language[]</code>, <code>genre[]</code> и остальные вымышленные параметры на реальные. Повторяющиеся параметры добавляйте через <code>append</code>: <code>String(array)</code> сформирует другой запрос.</p>
 <pre><code class="language-js">const choices = {
   format: [['manga', 'Manga'], ['manhwa', 'Manhwa']],
   languages: [['en', 'English'], ['ru', 'Russian'], ['ja', 'Japanese']],
@@ -1814,19 +1816,19 @@ export function createCatalogMethods(ctx, mapManga) {
   };
 }
 </code></pre>
-<p>Для подключения к полному источнику раздела 3 добавьте импорт <code>createCatalogMethods</code> из <code>./catalog-filters.mjs</code>, внутри createSource создайте <code>const catalog = createCatalogMethods(ctx, manga)</code> и включите <code>...catalog</code> в возвращаемый объект. Удалите прежние getPopular/getLatest/search/getFilters из этого объекта, чтобы они не перекрывали helper. getDetails/getChapters/getPages/getRecommendations остаются из полного примера.</p>
-<p>Этот модуль:</p>
+<p>Для подключения к примеру из раздела 3 импортируйте <code>createCatalogMethods</code> из <code>./catalog-filters.mjs</code> и вызовите <code>const catalog = createCatalogMethods(ctx, manga)</code> внутри <code>createSource</code>. Включите <code>...catalog</code> в возвращаемый объект вместо прежних <code>getPopular</code>, <code>getLatest</code>, <code>search</code> и <code>getFilters</code>. Методы карточки, глав, страниц и рекомендаций оставьте из раздела 3.</p>
+<p>Модуль обрабатывает:</p>
 <ul>
 <li>Возвращает декларации для каждого поддержанного kind и применяет defaults также в обычном каталоге.</li>
 <li>Читает только известные ключи и API values; неизвестные старые значения игнорирует. Не передаёт URL, произвольные поля сортировки или фрагменты запросов из selectedFilters.</li>
 <li>Сохраняет значения текста, корректно кодирует специальные символы один раз, разбирает include/exclude, повторяемые параметры и asc/desc.</li>
 <li>Не хранит состояние активного запроса; несколько search могут работать одновременно.</li>
 </ul>
-<p>В зависимости от API используйте GET query, JSON POST либо form POST. Контракт selectedFilters от этого не меняется: источник сам переводит выбор в нужные ID, числа, include/exclude-массивы и поля body. Для form body передайте строку URLSearchParams и соответствующий Content-Type; объект body сам по себе формой не становится.</p>
-<p>Нативных kind для диапазона чисел/дат, групп, зависимых dropdown, удалённого autocomplete, собственного HTML или custom widget нет. Диапазон можно выразить двумя text-фильтрами и проверить границы при построении запроса. Dropdown принимает готовый плоский список options; getFilters не получает текст для удалённого поиска options.</p>
+<p>Преобразуйте <code>selectedFilters</code> в формат запроса сайта: параметры GET, JSON POST или form POST. Источник сам подставляет ID, числа, массивы включения и исключения, поля тела запроса. Для формы передайте строку <code>URLSearchParams</code> и нужный <code>Content-Type</code>: объект тела запроса автоматически в форму не преобразуется.</p>
+<p>Отдельных типов для диапазонов, групп, зависимых списков, удалённого автодополнения, собственного HTML или элементов управления нет. Диапазон можно задать двумя фильтрами <code>text</code> и проверить границы при построении запроса. Выпадающему списку нужен готовый плоский массив <code>options</code>: <code>getFilters</code> не получает строку для поиска вариантов.</p>
 <h4 id="ru-options-refresh">Динамические options и refresh</h4>
-<p>Для обновляемой taxonomy объявите <code>supportsFilterRefresh: true</code>. UI запрашивает <code>getFilters({refresh: true})</code>; обычный вызов приходит с false или без аргумента. Приложение кеширует успешный снимок и объединяет обычные параллельные чтения; ошибка позволяет повторить попытку. Не рассчитывайте, что getFilters обязательно выполнится перед search/getLatest.</p>
-<p>Если нужны собственный кеш и принудительное обновление, создавайте их внутри фабрики. Пример <code>src/filter-cache.mjs</code>:</p>
+<p>Если варианты на сайте могут меняться, объявите <code>supportsFilterRefresh: true</code>. Обновление пользователем вызывает <code>getFilters({refresh: true})</code>; обычные вызовы передают <code>false</code> или не передают аргумент. MangaLaunch кеширует успешные снимки и объединяет обычные параллельные чтения. Неудачную загрузку можно повторить. Поиск и список последних могут запрашиваться до <code>getFilters</code>.</p>
+<p>Кеш источника храните внутри фабрики. Вспомогательный модуль <code>src/filter-cache.mjs</code> поддерживает принудительное обновление:</p>
 <pre><code class="language-js">export function cachedFilterLoader(loadFilters) {
   let snapshot;
   let pending;
@@ -1854,10 +1856,10 @@ export function createCatalogMethods(ctx, mapManga) {
   };
 }
 </code></pre>
-<p>Подключение: <code>const getFilters = cachedFilterLoader(() =&gt; loadFiltersFromSite(ctx))</code> внутри createSource. <code>loadFiltersFromSite</code> должен возвращать полный FilterDto[], проверять исходную структуру и сохранять стабильные API values. Helper не кеширует ошибки и не даёт старому ответу перезаписать новый снимок. Для статических фильтров кеш и refresh не нужны.</p>
-<p>Сохраняемые фильтры и позиции привязаны к key/value, поэтому изменение label допустимо, а переименование key/value ломает старые выборки. Если вариант удалён сайтом, не отправляйте его слепо в API; выберите и опишите совместимую политику. Не подменяйте ошибку taxonomy пустым успешным списком.</p>
+<p>Внутри <code>createSource</code> используйте <code>const getFilters = cachedFilterLoader(() =&gt; loadFiltersFromSite(ctx))</code>. Функция загрузки должна проверять ответ и возвращать полный <code>FilterDto[]</code> со стабильными значениями. Вспомогательный модуль не кеширует ошибки и не даёт старому ответу перезаписать новый снимок. Для статических фильтров кеш и обновление не нужны.</p>
+<p>В сохранённых фильтрах и позициях используются <code>key</code> и <code>value</code>. Подпись можно изменить без потерь, а переименование ключа или значения нарушит связь. Определите и опишите, как обрабатывать варианты, удалённые сайтом. Если загрузить варианты не удалось, верните ошибку, а не пустой список.</p>
 <h4 id="ru-filterbindings">Чипы тайтла и filterBindings</h4>
-<p>В manifest источника <code>filterBindings</code> принимает роли <code>author</code>, <code>artist</code>, <code>tags</code>; значения — <strong>ключи фильтров</strong>, не API IDs вариантов. Например, <code>{"author": "author", "tags": "genres"}</code>.</p>
+<p><code>filterBindings</code> связывает чипы карточки тайтла с фильтрами. Допустимы роли <code>author</code>, <code>artist</code> и <code>tags</code>; значение каждой роли — ключ фильтра, а не ID варианта. Например: <code>{"author": "author", "tags": "genres"}</code>.</p>
 <ul>
 <li>Author/artist связываются с kind=text и передают полное отображаемое имя одной строкой. При необходимости источник разрешает имя в API ID внутри search.</li>
 <li>Общий MangaDto.tags может содержать жанры, теги, темы и формат. Для них приложение сопоставляет подписи чипов с option.label подходящих singleSelect/multiSelect/triStateMultiSelect.</li>
@@ -1866,9 +1868,9 @@ export function createCatalogMethods(ctx, mapManga) {
 <li>Возвращайте чистые совпадающие названия, без badge-счётчиков, служебных дочерних надписей и HTML. Не теряйте полные алиасы авторов.</li>
 </ul>
 <h4 id="ru-_6">Обязательные тесты фильтров</h4>
-<p>Проверьте каждый kind, отсутствующий ключ против [], дефолтный и очищенный multiSelect, общий reset, все поля и направления sort, фиксированный sort без направления, include/exclude/ignore, конфликт и удалённый option, текст со спецсимволами и запятыми, поиск с пустым searchTerm, смену фильтров на странице &gt;1, параллельные запросы разных выборок, refresh после ошибки и гонку старого/нового снимка. Отдельно проверьте чип жанра, чип тега и author/artist.</p>
+<p>Проверьте каждый тип с отсутствующим ключом, явным <code>[]</code>, значением по умолчанию и очищенным выбором. Проверьте сброс, все поля и направления сортировки, сортировку без выбора направления, include/exclude/ignore, конфликты и удалённые варианты. Добавьте текст с запятыми и спецсимволами, фильтрацию при пустом <code>searchTerm</code>, смену фильтров после первой страницы, одновременные разные выборки, обновление после ошибки и гонку старого и нового ответов. Чипы жанра, тега, автора и художника проверьте отдельно.</p>
 <h3 id="ru-_7">Настройки</h3>
-<p>Добавьте permission <code>sourceSettings</code> и блок <code>settings</code> в определение источника, например:</p>
+<p>Добавьте разрешение <code>sourceSettings</code> и блок <code>settings</code> в описание источника:</p>
 <pre><code class="language-json">{
   "version": 1,
   "fields": [{
@@ -1881,9 +1883,9 @@ export function createCatalogMethods(ctx, mapManga) {
   }]
 }
 </code></pre>
-<p>Чтение — <code>await ctx.settings.get("titleLanguage")</code>, запись — <code>await ctx.settings.set("titleLanguage", "english")</code>. <code>get("source")</code> возвращает объявленные поля источника. Поддержаны boolean/string/integer/enum; задайте корректные default и ограничения. Имена <code>source</code> и <code>network</code> зарезервированы. <code>roles.titleLanguage</code> может указывать на соответствующее enum-поле.</p>
+<p>Для чтения используйте <code>await ctx.settings.get("titleLanguage")</code>, для записи — <code>await ctx.settings.set("titleLanguage", "english")</code>. <code>get("source")</code> возвращает все объявленные поля источника. Допустимы типы <code>boolean</code>, <code>string</code>, <code>integer</code> и <code>enum</code>; каждому полю задайте корректное значение по умолчанию и ограничения. Имена <code>source</code> и <code>network</code> зарезервированы. <code>roles.titleLanguage</code> может ссылаться на объявленное поле enum.</p>
 <h3 id="ru-_8">Авторизация</h3>
-<p>Вход, капча и SSO выполняются в WebView приложения. Расширение объявляет параметры, а не собственный интерфейс входа. Добавьте capability <code>account</code>, <code>features.auth: true</code>, permission <code>sourceSession</code> и блок <code>auth</code>:</p>
+<p>Вход, капча и SSO проходят в WebView приложения. Источник объявляет, как распознать и передать сессию. Добавьте возможность <code>account</code>, флаг <code>features.auth: true</code>, разрешение <code>sourceSession</code> и блок <code>auth</code>:</p>
 <pre><code class="language-json">{
   "profileId": "host.cookie.v1",
   "loginUrl": "https://example.org/login",
@@ -1891,8 +1893,8 @@ export function createCatalogMethods(ctx, mapManga) {
   "sessionExport": {"headers": ["Cookie"], "values": []}
 }
 </code></pre>
-<p>Согласуйте <code>network.authOrigins</code>, <code>cookieOrigins</code> и реальные домены входа/API. Родительский Cookie Domain — отдельное явное разрешение. Не экспортируйте сессию на CDN только ради загрузки изображений. <code>completionUrl</code>/<code>successUrl</code> задавайте по фактическому сценарию сайта; <code>features.authCompletion</code> должен соответствовать декларации.</p>
-<p>Для Bearer-сессии используется <code>host.session.v1</code> и декларативные <code>rules</code>: <code>bearer</code>, <code>cookieAll</code>/<code>cookieAny</code>, <code>tokenStorageKeys</code>, <code>tokenPath</code>, <code>tokenFields</code>, <code>tokenTypePath</code>, <code>tokenType</code>, <code>tokenCookieNames</code>. Экспорт нужных headers/values объявляется явно. Токены из cookies задаются точными именами в <code>tokenCookieNames</code>, без wildcard. Чтением хранилища и формированием заголовков занимается приложение.</p>
+<p>Укажите в <code>network.authOrigins</code> и <code>cookieOrigins</code> реальные домены входа и API. Родительскому домену cookie нужно отдельное явное разрешение. Не передавайте сессию на CDN только ради загрузки изображений. <code>completionUrl</code> и <code>successUrl</code> должны соответствовать сценарию входа сайта и флагу <code>features.authCompletion</code>.</p>
+<p>Для Bearer-сессии используйте <code>host.session.v1</code> и правила <code>bearer</code>, <code>cookieAll</code>/<code>cookieAny</code>, <code>tokenStorageKeys</code>, <code>tokenPath</code>, <code>tokenFields</code>, <code>tokenTypePath</code>, <code>tokenType</code> и <code>tokenCookieNames</code>. Явно объявите экспортируемые заголовки и значения. В <code>tokenCookieNames</code> нужны точные имена cookies без подстановочных символов. Приложение само читает хранилище и формирует заголовки.</p>
 <p>Обычный HTTP-запрос получает текущую сессию автоматически. Если API требует разрешённый токен в POST body:</p>
 <pre><code class="language-js">const session = await ctx.auth.getSession({url: apiUrl});
 const response = await ctx.http.request({
@@ -1900,14 +1902,14 @@ const response = await ctx.http.request({
   authRevision: session.revision, body: {token: session.accessToken},
 });
 </code></pre>
-<p>Для такого запроса нужны разрешённые POST, URL и экспорт <code>accessToken</code>. Передавайте <code>authRevision</code>, чтобы смена сессии отменила устаревшую операцию. Не кешируйте и не логируйте токены, cookies, пароли или snapshot сессии.</p>
+<p>Для запроса должны быть разрешены POST, URL и экспорт <code>accessToken</code>. Передавайте <code>authRevision</code>, чтобы при смене сессии устаревшая операция отменилась. Не кешируйте и не записывайте в лог токены, cookies, пароли и снимки сессии.</p>
 <h2 id="ru-6">6. Производительность, ограничения и ошибки</h2>
 <ul>
 <li>Каждый sourceId имеет отдельные настройки, cookies, токены и браузерный профиль, даже при общем сайте или engine.</li>
 <li>Несколько методов одной фабрики могут выполняться одновременно: по умолчанию 3 операции, пользователь выбирает 1–5. Не храните текущий mangaId, page, временный ответ или изменяемый cursor в общем поле фабрики. Используйте локальные переменные аргументов.</li>
 <li>Для независимых запросов подходит Promise.all в пределах лимитов. Не распараллеливайте зависимые шаги авторизации и пагинацию с общим серверным cursor.</li>
 <li>Для парных Details/Chapters/Recommendations одной страницы переиспользуйте одну загрузку и проекцию через <a href="assets/extension-kit/src/core/recent.mjs">recent</a>: импортируйте helper в свой проект и создавайте кеш внутри фабрики. По умолчанию это 2 записи и 15 секунд после завершения; одинаковые выполняющиеся запросы объединяются, ошибки удаляются. Каталог с ручным обновлением, POST и операции записи этим кешем не обслуживаются.</li>
-<li>В runtime-пакете разрешены только используемые исходники, данные, иконки и лицензия. Тесты, node_modules, SDK bootstrap и приватные ключи в архив не включаются.</li>
+<li>В пакет включаются только используемые исходники, данные, иконки и лицензия. Тесты, node_modules, служебный код SDK и закрытые ключи в архив не входят.</li>
 </ul>
 <table>
 <thead>
@@ -1967,9 +1969,9 @@ const response = await ctx.http.request({
 </tr>
 </tbody>
 </table>
-<p>Приложение может уменьшать эффективную параллельность. Лимит HTTP не равен числу одновременно выполняющихся методов источника.</p>
-<p>При изменении структуры ответа возвращайте <code>parse_error</code> или <code>invalid_response</code>, а не ложный успешный пустой каталог. Пустой список означает реальное отсутствие результатов или конец пагинации. Стандартные коды также включают <code>auth_required</code>, <code>challenge_required</code>, <code>rate_limited</code>, <code>not_found</code>, <code>chapter_unavailable</code>, <code>timeout</code> и <code>cancelled</code>; полный список — в API types. Безопасная ошибка: <code>Object.assign(Error("Unexpected catalog response."), {code: "parse_error", phase: "parse"})</code>.</p>
-<p>Сохраняйте исходный код ошибки брокера. Не маскируйте 403/challenge/429 перебором доменов, не повторяйте автоматически POST и логин. В <code>ctx.log.info(event, fields)</code> передавайте короткие диагностические данные без секретов.</p>
+<p>Фактический лимит HTTP может быть ниже указанного в manifest. Он не связан напрямую с числом одновременно выполняющихся методов источника.</p>
+<p>Если сайт изменил формат ответа, возвращайте <code>parse_error</code> или <code>invalid_response</code>. Пустой список означает отсутствие результатов или конец пагинации. Среди стандартных кодов также есть <code>auth_required</code>, <code>challenge_required</code>, <code>rate_limited</code>, <code>not_found</code>, <code>chapter_unavailable</code>, <code>timeout</code> и <code>cancelled</code>; полный список приведён ниже. Пример ошибки разбора: <code>Object.assign(Error("Unexpected catalog response."), {code: "parse_error", phase: "parse"})</code>.</p>
+<p>Сохраняйте исходный код ошибки приложения. Не перебирайте домены, чтобы скрыть 403, капчу или 429; не повторяйте автоматически POST-запросы и вход. Короткие диагностические события записывайте через <code>ctx.log.info(event, fields)</code> без секретов.</p>
 <h2 id="ru-7">7. Тесты перед выпуском</h2>
 <p>Минимальный тест <code>tests/source.test.mjs</code> для примера из раздела 3:</p>
 <pre><code class="language-js">import test from 'node:test';
@@ -2001,23 +2003,23 @@ test('factory is offline and search encodes input once', async () =&gt; {
   assert.equal(calls[0].searchParams.get('excludeGenres'), 'horror');
 });
 </code></pre>
-<p>Для своего проекта: <code>node --test tests/*.test.mjs</code>. В этих репозиториях: <code>npm test</code>.</p>
-<p>Покройте первую/следующую/пустую страницу, специальные символы поиска, очистку фильтров, include/exclude, сортировки, malformed JSON/HTML, дробные главы, ограничения доступа, URL изображений и рекомендации. Проверьте offline-фабрику, независимые экземпляры и одновременные методы без смешивания данных.</p>
-<p>Перед публикацией проверьте в приложении каталог, карточки, чтение и изображения, зеркало, вход/выход и смену сессии. Убедитесь, что обновление пакета сохраняет ID и пользовательские данные. Отдельно проверьте доступные целевые платформы; тест парсера не подтверждает работу сайта, аккаунта и WebView.</p>
+<p>Запускайте <code>node --test tests/*.test.mjs</code> из своего проекта. Эту же команду можно добавить в <code>package.json</code> как скрипт <code>test</code> и вызывать через <code>npm test</code>.</p>
+<p>Покройте тестами первую, следующую и пустую страницы каталога; поиск со спецсимволами; очистку фильтров, включение, исключение и сортировку; повреждённый JSON/HTML; дробные главы; ограничения доступа; URL изображений и рекомендации. Проверьте создание фабрики без сети, независимость экземпляров и одновременные методы без смешивания данных.</p>
+<p>Перед выпуском проверьте в приложении каталог, карточки, чтение, изображения, зеркала, вход, выход и смену аккаунта на каждой целевой платформе. Убедитесь, что обновление сохраняет ID и пользовательские данные. Тесты парсера не заменяют проверку живого сайта, аккаунта и входа через WebView.</p>
 <h2 id="ru-8">8. Подпись и локальный импорт</h2>
-<p>Выберите собственную лицензию и убедитесь в правах на распространяемые исходники, данные и изображения. Код этих репозиториев имеет лицензию <strong>«Все права защищены»</strong>; публикация на GitHub сама по себе не разрешает его перераспространение. Сохраните лицензии используемых сторонних компонентов.</p>
-<p>Создайте Ed25519-ключ в приватном каталоге. <code>.keys/</code> исключён из Git; ключ не должен попасть в commit, release assets, логи или примеры:</p>
+<p>Выберите лицензию для своего кода и проверьте права на распространение заимствованных исходников, данных и изображений. У предоставленного набора инструментов лицензия «Все права защищены»; перед распространением прочитайте её. Само наличие публичного репозитория не даёт права использовать его код. Сохраняйте лицензии сторонних компонентов.</p>
+<p>Создайте ключ Ed25519 в приватном каталоге. До генерации исключите <code>.keys/</code> из Git. Ключ не должен попасть в коммиты, файлы релиза, логи или примеры:</p>
 <pre><code class="language-powershell">node tools/generate-key.mjs .keys/publisher.pem my-publisher-2026
 </code></pre>
 <p>Упаковка отдельного проекта:</p>
 <pre><code class="language-powershell">node tools/pack_extension.mjs --project ./my-sources --key .keys/publisher.pem --key-id my-publisher-2026 --output ./dist/my-sources.mlsource
 </code></pre>
-<p>Упаковщик создаёт <code>.mlsource</code>, <code>.mlsource.public.json</code> и <code>.mlsource.sha256</code>, подписывает manifest, записывает hash/size payload и проверяет полученный архив. Пакет воспроизводим для одинаковых файлов, версии и ключа.</p>
-<p>Импортируйте public record и пакет через настройки расширений, независимо сверьте SHA-256 fingerprint публичного ключа и его разрешённые extensionIds, затем подтвердите издателя и permissions. Файл <code>.public.json</code> рядом с архивом помогает сверке, но не устанавливает доверие сам. Локальный тестовый ключ не является production-ключом.</p>
+<p>Упаковщик создаёт <code>.mlsource</code>, <code>.mlsource.public.json</code> и <code>.mlsource.sha256</code>: записывает хеши и размеры файлов, подписывает manifest и проверяет архив. При одинаковых файлах, версии и ключе получается одинаковый пакет.</p>
+<p>Импортируйте запись публичного ключа и пакет в настройках расширений. По независимому каналу сверьте SHA-256 отпечаток ключа и разрешённые <code>extensionIds</code>, затем подтвердите издателя и разрешения. Файл <code>.public.json</code> рядом с архивом помогает сверить значения, но сам по себе не подтверждает доверие к издателю. Для локальных тестов используйте отдельный ключ.</p>
 <p><a id="ru-publishing"></a></p>
 <h2 id="ru-9-github">9. Публикация на GitHub</h2>
 <h3 id="ru-_9">Ручной выпуск собственного пакета</h3>
-<p>Правила одинаковы для локальной публикации и CI:</p>
+<p>И для ручного выпуска, и для CI действуют следующие правила:</p>
 <ol>
 <li>Выпускайте проверенный commit с новой SemVer-версией; опубликованную версию и её байты не перезаписывайте.</li>
 <li><code>extensionId</code>, source IDs и publisher key сохраняйте при обычном обновлении. Смену или отзыв ключа оформляйте явно; новый ключ из скачанного пакета не может сам себя одобрить.</li>
@@ -2025,26 +2027,26 @@ test('factory is offline and search encodes input once', async () =&gt; {
 </ol>
 <pre><code class="language-powershell">node tools/sign_repository_index.mjs --repo owner/repo --serial 1 --tag v1.0.0 --package ./dist/my-sources.mlsource --key .keys/publisher.pem --output ./dist
 </code></pre>
-<p><code>serial</code> — положительное строго возрастающее число для репозитория; не сбрасывайте его при переносе workflow. Один serial не должен обозначать разные данные. Индекс действует 30 дней; публикуйте актуальные метаданные до истечения срока. Подпись <code>extensions-index.ed25519</code> — отдельный бинарный файл, не JSON/base64. Подпись индекса не заменяет подпись пакета.</p>
-<p>Если собственный репозиторий не публикуется автоматическим workflow, создайте tag на проверенном commit и GitHub Release с пятью файлами:</p>
+<p><code>serial</code> — положительный, строго возрастающий номер индекса репозитория. Сохраняйте последовательность при переносе workflow и не подписывайте разные данные с одним номером. Срок действия индекса — 30 дней; обновляйте его до истечения срока. <code>extensions-index.ed25519</code> — отдельная бинарная подпись, не JSON и не base64. Подписывать нужно и индекс, и пакет.</p>
+<p>Для ручного выпуска создайте тег на проверенном коммите и приложите к GitHub Release пять файлов:</p>
 <pre><code class="language-powershell">git tag v1.0.0
 git push origin v1.0.0
 gh release create v1.0.0 ./dist/my-sources.mlsource ./dist/my-sources.mlsource.public.json ./dist/my-sources.mlsource.sha256 ./dist/extensions-index.json ./dist/extensions-index.ed25519 --repo owner/repo --verify-tag --title "My Unofficial Sources 1.0.0" --notes "Signed source package."
 </code></pre>
-<p>Для prerelease используйте SemVer-суффикс и отметку prerelease на GitHub. Release notes должны указывать изменения источников, минимальную версию приложения, новые разрешения и известные ограничения проверки. Публично распространяются пакет, публичный ключ/record, checksum и подписанный индекс; приватный ключ не публикуется.</p>
+<p>Для предварительного выпуска добавьте суффикс SemVer и отметьте релиз на GitHub как prerelease. В описании укажите изменения источников, минимальную версию приложения, новые разрешения и то, что не удалось проверить. Публикуйте пакет, запись публичного ключа, контрольную сумму и подписанный индекс. Закрытый ключ не публикуйте.</p>
 <h3 id="ru-workflow">Автоматизация публикации</h3>
 
-<p>В отдельном репозитории настройте защищённую основную ветку и собственное защищённое окружение выпуска:</p>
+<p>Процесс выпуска можно посмотреть в <a href="https://github.com/mangalaunch/MangaLaunch-Official-Extensions">репозитории официального расширения</a>. В своём проекте защитите основную ветку и создайте защищённое окружение выпуска со своими ключами и настройками:</p>
 <ul>
 <li>Variable <code>MLSOURCE_PUBLISHER_KEY_ID</code> — идентификатор доверенного ключа издателя.</li>
 <li>Secret <code>MLSOURCE_SIGNING_KEY_BASE64</code> — base64 полного приватного Ed25519 PEM в формате PKCS#8. Подготовьте значение локально и храните только как секрет environment.</li>
 <li>При необходимости добавьте reviewers и ограничения release tags.</li>
 </ul>
-<p>В своём workflow используйте SemVer-тег <code>vVERSION</code> как событие выпуска. Для ручного запуска workflow укажите существующий tag/ref и <code>version</code> без <code>v</code>; tag должен ссылаться на выполняемый commit. Workflow повторно запускает тесты, подписывает пакет и индекс, публикует пять файлов. Индексный serial вычисляется как <code>GITHUB_RUN_NUMBER * 100 + GITHUB_RUN_ATTEMPT</code>.</p>
-<p>Проверки PR и основной ветки выпускают только тестовые артефакты, не релизы. Приватный release-ключ доступен только защищённому environment. Обновления устанавливаются после проверки подписи, версии, владения ID и разрешений пользователем.</p>
+<p>В этом workflow выпуск запускается SemVer-тегом <code>vVERSION</code>. При ручном запуске выберите существующий тег или ref и передайте версию без <code>v</code>; тег должен указывать на выполняемый коммит. Workflow повторяет тесты, подписывает пакет и индекс, затем публикует пять файлов. Номер индекса вычисляется как <code>GITHUB_RUN_NUMBER * 100 + GITHUB_RUN_ATTEMPT</code>. При адаптации сохраните строгое возрастание номера между всеми выпусками.</p>
+<p>Проверки pull request и основной ветки создают тестовые файлы, а не релизы. Доступ к закрытому ключу дайте только защищённому окружению выпуска. Перед установкой обновления MangaLaunch проверяет подписи, версии, владение ID источников и необходимые подтверждения пользователя.</p>
 <p><a id="ru-api-reference"></a></p>
 <h2 id="ru-10-api-v1">10. Справочник контрактов API v1</h2>
-<p>Эти контракты описывают данные расширения, а не ответы конкретного сайта. Полный нормативный набор полей — в <a href="assets/sdk/source-api.d.ts">source-api.d.ts</a> и схемах SDK. Не добавляйте неописанные поля в manifest: его объекты проверяются строго. Дополнительное поле DTO не создаёт новую возможность UI.</p>
+<p>Справочник описывает данные, которыми источник обменивается с MangaLaunch. Ответы сайта могут выглядеть иначе: источник преобразует их к этим контрактам. Полные определения полей находятся в <code>source-api.d.ts</code> и схемах SDK. Неизвестные поля manifest отклоняются. Добавление поля в DTO не создаёт новую возможность интерфейса.</p>
 <h3 id="ru-101">10.1. Тайтлы, главы, доступ, страницы и рекомендации</h3>
 <pre><code class="language-ts">type Json = null | boolean | number | string | Json[]
   | {[key: string]: Json};
@@ -2100,7 +2102,7 @@ interface RecommendationPageDto {
 </tr>
 <tr>
 <td>rating</td>
-<td>Конечное число или null; wire не задаёт универсальную шкалу и не нормализует рейтинг автоматически.</td>
+<td>Конечное число или null; Общей шкалы нет; рейтинг не нормализуется автоматически.</td>
 </tr>
 <tr>
 <td>pageCount</td>
@@ -2137,7 +2139,7 @@ interface RecommendationPageDto {
 </tbody>
 </table>
 <p>Прочие DTO-строки ограничены 16384 символами без NUL; обязательные строки не могут быть пустыми/пробельными. Общие списки тайтлов/глав/страниц принимают до 100000 элементов, но объём ответа и время выполнения дополнительно ограничены. Список глав с повторяющимся id отклоняется целиком.</p>
-<p>getPopular/getLatest/search возвращают <strong>только массив</strong> тайтлов, без <code>{items, total, hasNextPage}</code>. Конец списка — настоящий пустой массив; не скрывайте ошибку парсера под концом пагинации. getRecommendations использует отдельную обёртку с hasNextPage. Не возвращайте неполное превью главы как полную страницу.</p>
+<p><code>getPopular</code>, <code>getLatest</code> и <code>search</code> возвращают массив тайтлов без обёртки <code>{items, total, hasNextPage}</code>. Пустой массив завершает пагинацию; ошибка разбора должна оставаться ошибкой. У <code>getRecommendations</code> своя обёртка с <code>hasNextPage</code>. Для чтения возвращайте полные изображения, а не превью главы.</p>
 <h3 id="ru-102-http">10.2. Контекст и операции HTTP</h3>
 <pre><code class="language-ts">interface HttpRequestDto {
   method: 'GET' | 'POST' | 'HEAD';
@@ -2185,7 +2187,7 @@ interface SourceContextV1 {
   };
 }
 </code></pre>
-<p><code>sourceId</code>, <code>baseUrl</code> и <code>parameters</code> выдаёт приложение. parameters — подписанные константы manifest для настройки общей фабрики, не пользовательские настройки и не место для секретов. Вызовы http/html/settings/auth выполняются только внутри методов источника.</p>
+<p>Приложение передаёт <code>sourceId</code>, <code>baseUrl</code> и <code>parameters</code>. В <code>parameters</code> находятся подписанные константы manifest для настройки общей фабрики, а не пользовательские настройки или секреты. Вызывайте API HTTP, HTML, настроек и авторизации только внутри методов источника.</p>
 <table>
 <thead>
 <tr>
@@ -2233,10 +2235,10 @@ const response = await ctx.http.request({
 </code></pre>
 <p>HEAD может проверять также разрешённый image origin и не возвращает тело изображения. GET не принимает body. После GET/HEAD обрабатываются до 5 redirects с повторной проверкой URL и сессии; redirect POST не воспроизводится автоматически.</p>
 <p>Успешный ответ содержит конечный url, status, body и безопасные headers с ключами в нижнем регистре: content-type, content-length, cache-control, etag, last-modified, retry-after, location, x-total-count, cf-mitigated. Set-Cookie не передаётся скрипту; приложение применяет cookies отдельно в разрешённой сессии.</p>
-<p>responseType=text возвращает строку, json — разобранное JSON-значение, bytes — массив чисел 0–255. HTTP-кодировка учитывается, включая объявленный Windows-1251. При неподдерживаемой кодировке или повреждённом JSON верните/сохраните осмысленную ошибку, а не угадывайте структуру.</p>
+<p><code>responseType: "text"</code> возвращает строку, <code>"json"</code> — разобранное JSON-значение, <code>"bytes"</code> — массив чисел от 0 до 255. Приложение учитывает объявленную HTTP-кодировку, в том числе Windows-1251. Не скрывайте ошибки неподдерживаемой кодировки или повреждённого JSON.</p>
 <p>Не-2xx ответ вызывает SourceHostError: 401 → auth_required, 403 → access_denied, 404 → not_found, 429 → rate_limited, прочие → invalid_response; при <code>cf-mitigated: challenge</code> — challenge_required. При необходимости разбирайте безопасный <code>error.body</code> своего endpoint для определения доступа. Не рассчитывайте получить обычный response.status=404 вместо исключения.</p>
 <h3 id="ru-103-html-">10.3. Все поля HTML-проекции</h3>
-<p>Один узел проекции содержит <strong>ровно один режим результата</strong>: fields, text=true, attr, html=true, outerHtml=true, tagName=true либо containsText. Остальные поля управляют выборкой. <code>baseUrl</code> задаётся на верхнем уровне вызова ctx.html.extract; вложенные поля наследуют его.</p>
+<p>У каждого узла проекции ровно один режим результата: <code>fields</code>, <code>text=true</code>, <code>attr</code>, <code>html=true</code>, <code>outerHtml=true</code>, <code>tagName=true</code> или <code>containsText</code>. Остальные поля управляют выбором узлов. <code>baseUrl</code> задаётся на верхнем уровне вызова <code>ctx.html.extract</code> и наследуется вложенными полями.</p>
 <table>
 <thead>
 <tr>
@@ -2397,7 +2399,7 @@ const response = await ctx.http.request({
 </table>
 <p>allowSubdomains относится к HTTP/image, <strong>не расширяет authOrigins</strong>. Cookies и credentials требуют точных разрешённых origins. Для IDN используйте нормализованные HTTPS URL. Разные порты — разные origins.</p>
 <p>cookieDefaults — до 16 публичных настроечных cookies с origin/name/value и необязательным path (по умолчанию /). Они применяются только к совпавшим origin/path. Не помещайте туда пользовательские сессии и пароли.</p>
-<p>media.transform поддерживает только algorithm=xor, key (1–256 байтов 0–255), origin, pathPrefix, stemLength (1–256), markerOffset (0–255) и marker (один символ). Это общий алгоритм с параметрами формата сайта; он не расширяет image grants. Не используйте его вместо исправления неверного URL/авторизации.</p>
+<p><code>media.transform</code> поддерживает <code>algorithm=xor</code>, <code>key</code> (1–256 байтов, каждый от 0 до 255), <code>origin</code>, <code>pathPrefix</code>, <code>stemLength</code> (1–256), <code>markerOffset</code> (0–255) и <code>marker</code> (один символ). Параметры описывают поддерживаемый формат изображений сайта и не расширяют список разрешённых доменов. Перед добавлением преобразования проверьте URL и авторизацию.</p>
 <h3 id="ru-105">10.5. Поля настроек и авторизации</h3>
 <p>settings.version — целое 1–1000; fields — до 32 описаний. Каждое содержит key, label, type и default. key соответствует <code>[a-z][A-Za-z0-9_.-]{0,63}</code>, source/network зарезервированы; label — 1–128 символов.</p>
 <table>
@@ -2426,7 +2428,7 @@ const response = await ctx.http.request({
 </tr>
 </tbody>
 </table>
-<p>roles.titleLanguage ссылается на объявленный enum ключ. Необязательный legacyNamespace используется для совместимости существующих source-owned настроек, не создаёт общий доступ разных источников. Нельзя читать произвольные настройки приложения через ctx.settings. Перед записью проверяйте тип и declared constraints; set возвращает Promise<void>.</void></p>
+<p><code>roles.titleLanguage</code> ссылается на объявленный ключ enum. Необязательный <code>legacyNamespace</code> нужен для совместимости с прежними настройками источника и не открывает доступ к настройкам других источников. Через <code>ctx.settings</code> нельзя читать произвольные настройки приложения. Перед записью проверьте тип и ограничения; <code>set</code> возвращает <code>Promise&lt;void&gt;</code>.</p>
 <p>auth содержит profileId, loginUrl, cookieOrigins (до 16), sessionExport; rules необязателен. Если features.authCompletion=true, обязательны оба completionUrl и successUrl; иначе не добавляйте их.</p>
 <table>
 <thead>
@@ -2467,10 +2469,10 @@ const response = await ctx.http.request({
 </tbody>
 </table>
 <p>Списки rules — до 16 строк, каждая 1–128 символов; tokenType — до 32. sessionExport.headers допускает Cookie, Authorization, X-XSRF-TOKEN, X-CSRF-TOKEN, а values — accessToken и csrfToken. Экспортируйте только необходимое.</p>
-<p>ctx.auth.status() возвращает authorized/revision; это состояние текущего источника. getSession({url}) возвращает снимок для конкретного разрешённого URL. headers, cookieHeader, accessToken и csrfToken доступны только в пределах разрешённого экспорта; опциональные поля могут отсутствовать. Проверяйте наличие нужного значения, не приводите undefined к строке. Снимок меняется при выходе/смене аккаунта; обычные HTTP-вызовы получают свежую сессию автоматически.</p>
+<p><code>ctx.auth.status()</code> возвращает <code>authorized</code> и <code>revision</code> текущего источника. <code>getSession({url})</code> возвращает снимок для указанного разрешённого URL. <code>headers</code>, <code>cookieHeader</code>, <code>accessToken</code> и <code>csrfToken</code> доступны только при разрешённом в manifest экспорте. Перед использованием проверяйте необязательные значения: не превращайте <code>undefined</code> в строку. При выходе или смене аккаунта снимок меняется. Обычные HTTP-запросы получают актуальную сессию автоматически.</p>
 <p>Ограничения min/max допустимы только у integer, maxLength — только у string, options — только у enum. Без явных границ integer использует -1000000…1000000, string — maxLength=4096. Строковые настройки не принимают управляющие символы; default проверяется теми же правилами, что пользовательское значение.</p>
 <h3 id="ru-106">10.6. Ошибки и диагностический контракт</h3>
-<p>SourceHostError — Error с code и phase; дополнительно могут быть httpStatus, retryAfterSeconds, access, body. phase — короткая строка этапа, а не stack/HTML/токен. Сохраняйте код исходной ошибки; для собственного отказа добавьте code/phase к Error.</p>
+<p><code>SourceHostError</code> — это <code>Error</code> с полями <code>code</code> и <code>phase</code>. Дополнительно могут быть <code>httpStatus</code>, <code>retryAfterSeconds</code>, <code>access</code> и <code>body</code>. В <code>phase</code> указывайте короткое название этапа, а не стек, HTML или токен. Сохраняйте коды ошибок приложения; к собственным ошибкам добавляйте <code>code</code> и <code>phase</code>.</p>
 <p>Полный union кодов API v1:</p>
 <pre><code class="language-text">cancelled, timeout, offline, network, rate_limited, auth_required,
 challenge_required, not_found, title_not_found, chapter_not_found,
@@ -2478,10 +2480,10 @@ chapter_unavailable, parse_error, invalid_response, permission_denied,
 unsupported, incompatible_api, resource_limit, runtime_crashed,
 auth_session_changed, source_unavailable, access_denied
 </code></pre>
-<p>not_found — общий ответ отсутствия; title_not_found/chapter_not_found точнее описывают отсутствие сущности. chapter_unavailable с access передаёт ограничение чтения. permission_denied означает нарушение grants/контракта вызова; unsupported — неподдерживаемую возможность; resource_limit — исчерпанный бюджет. Отмена и смена сессии не являются пустым успешным результатом.</p>
-<p>ctx.log.info принимает event и объект только из string/number/boolean. Не передавайте большие ответы, Error-объекты, массивы cookies или персональные данные.</p>
+<p><code>not_found</code> означает, что ресурс не найден; <code>title_not_found</code> и <code>chapter_not_found</code> уточняют, какой именно. <code>chapter_unavailable</code> с полем <code>access</code> описывает ограничение чтения. <code>permission_denied</code> означает нарушение разрешений или контракта вызова, <code>unsupported</code> — недоступную возможность, <code>resource_limit</code> — исчерпанный бюджет. Отмену и смену сессии передавайте как ошибки, а не пустые результаты.</p>
+<p><code>ctx.log.info</code> принимает название события и объект со строками, числами или boolean. Не записывайте в лог ответы сервера, объекты <code>Error</code>, cookies и персональные данные.</p>
 <h3 id="ru-107">10.7. Контракт подписанного индекса</h3>
 <p>Индекс — объект schemaVersion=1, repositoryId (owner/repo в нижнем регистре), serial, generatedAt, expiresAt, publisherKeyId, channel и packages. channel: stable/prerelease; timestamps — UTC с секундной точностью и Z.</p>
 <p>Каждая запись packages содержит extensionId, version, releaseTag, assetName, size, sha256, sourceApiVersion, minRuntimeAbi, minAppVersion, sourceIds и channel. Эти значения сверяются с независимо проверенным архивом. Не указывайте внешний download URL вместо assetName. Схема допускает до 128 пакетов, но предоставленный sign_repository_index.mjs формирует индекс одного переданного архива.</p>
-<p>Канонический manifest подписывается Ed25519 с префиксом <code>MangaLaunch source package v1\n</code>, индекс — с <code>MangaLaunch source repository v1\n</code>; подписи не взаимозаменяемы. Используйте инструменты упаковки/подписи вместо ручной конкатенации JSON. Истёкший индекс препятствует обновлению метаданных, но уже установленный пакет продолжает работать offline. Отзыв ключа и pinning не обходятся старым архивом или удалением репозитория из списка.</p></article></div></div></main><footer class="site-footer section-shell"><a class="brand" href="index.html"><span>Manga<span class="brand-accent">Launch</span></span></a><span data-i18n="copy.so-many-stories-a-rhythm-of-your-own">So many stories. A rhythm of your own.</span><span>© <span id="year">2026</span> MangaLaunch</span><div class="footer-links"><a data-i18n="copy.extension-authoring-guide" href="extensions.html">Extension authoring guide</a><button aria-disabled="true" class="social-placeholder" data-public-link="telegram" disabled="" type="button"><svg aria-hidden="true" class="icon" viewbox="0 0 24 24"><path d="m3 10 18-7-4 18-6-6-4 3v-6l10-6-12 5Z"></path></svg><span>Telegram</span><small data-i18n="copy.coming-soon">Coming soon</small></button></div><div class="footer-legal"><nav aria-label="Legal information" data-i18n-aria-label="legal.navigation"><a href="privacy.html" data-i18n="legal.privacy">Privacy Policy</a><a href="terms.html" data-i18n="legal.terms">Terms of Service</a></nav><a href="mailto:mangalaunch@proton.me">mangalaunch@proton.me</a></div></footer></body></html>
+<p>Канонический manifest подписывается Ed25519 с префиксом <code>MangaLaunch source package v1\n</code>, индекс — с <code>MangaLaunch source repository v1\n</code>. Подписи не взаимозаменяемы. Для получения канонических байтов используйте упаковщик и утилиту подписи индекса. После истечения срока индекса обновление метаданных прекращается, но установленный пакет может работать без сети. Старый архив или удаление репозитория не отменяют отзыв и закрепление ключа.</p></article></div></div></main><footer class="site-footer section-shell"><a class="brand" href="index.html"><span>Manga<span class="brand-accent">Launch</span></span></a><span data-i18n="copy.so-many-stories-a-rhythm-of-your-own">So many stories. A rhythm of your own.</span><span>© <span id="year">2026</span> MangaLaunch</span><div class="footer-links"><a data-i18n="copy.extension-authoring-guide" href="extensions.html">Extension authoring guide</a><button aria-disabled="true" class="social-placeholder" data-public-link="telegram" disabled="" type="button"><svg aria-hidden="true" class="icon" viewbox="0 0 24 24"><path d="m3 10 18-7-4 18-6-6-4 3v-6l10-6-12 5Z"></path></svg><span>Telegram</span><small data-i18n="copy.coming-soon">Coming soon</small></button></div><div class="footer-legal"><nav aria-label="Legal information" data-i18n-aria-label="legal.navigation"><a href="privacy.html" data-i18n="legal.privacy">Privacy Policy</a><a href="terms.html" data-i18n="legal.terms">Terms of Service</a></nav><a href="mailto:mangalaunch@proton.me">mangalaunch@proton.me</a></div></footer></body></html>
 
