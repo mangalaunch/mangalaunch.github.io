@@ -130,9 +130,7 @@ window.SITE_MESSAGES = {
     "copy.so-many-stories-a-rhythm-of-your-own": "So many stories. A rhythm of your own.",
     "copy.extension-authoring-guide": "Extension authoring guide",
     "copy.coming-soon": "Coming soon",
-    "attribute.mangalaunch-is-your-place-for-manga-manhwa-and-webtoons": "MangaLaunch is your place for manga, manhwa and webtoons. A personal library, flexible reader, offline chapters, translation, extensions and Google Drive sync.",
-    "attribute.mangalaunch-your-manga-your-rhythm": "MangaLaunch — your manga. Your rhythm.",
-    "attribute.bring-your-favorite-stories-together-read-on-windows-and": "Bring your favorite stories together. Read on Windows and Android, download chapters and keep your place with Google Drive sync.",
+    "attribute.mangalaunch-is-your-place-for-manga-manhwa-and-webtoons": "Read manga, manhwa and webtoons on Windows and Android. Organize your library, download chapters, translate pages on Android and sync with Google Drive.",
     "attribute.mangalaunch-home": "MangaLaunch — home",
     "attribute.open-menu": "Open menu",
     "attribute.main-navigation": "Main navigation",
@@ -155,7 +153,10 @@ window.SITE_MESSAGES = {
     "guide.home": "Back to MangaLaunch",
     "guide.note": "Examples use a fictional website. Replace its addresses, IDs and implementation with those of your source.",
     "language.label": "Language",
-    "guide.description": "Create a MangaLaunch extension: source API contracts, catalog and filters, authentication, signing and publishing."
+    "guide.description": "Create a MangaLaunch extension: source API contracts, catalog and filters, authentication, signing and publishing.",
+    "seo.image-alt": "An open manga book with illustrated pages unfolding into the air.",
+    "seo.locale": "en_US",
+    "seo.alternate-locale": "ru_RU"
   },
   "ru": {
     "copy.mangalaunch-your-manga-your-rhythm": "MangaLaunch — твоя манга. Твой ритм.",
@@ -288,9 +289,7 @@ window.SITE_MESSAGES = {
     "copy.so-many-stories-a-rhythm-of-your-own": "Историй много. Ритм — ваш.",
     "copy.extension-authoring-guide": "Руководство по расширениям",
     "copy.coming-soon": "Скоро",
-    "attribute.mangalaunch-is-your-place-for-manga-manhwa-and-webtoons": "MangaLaunch — своё место для манги, манхвы и вебтунов. Удобная читалка, личная библиотека, офлайн-главы, перевод страниц и подключаемые источники.",
-    "attribute.mangalaunch-your-manga-your-rhythm": "MangaLaunch — твоя манга. Твой ритм.",
-    "attribute.bring-your-favorite-stories-together-read-on-windows-and": "Соберите любимые истории в одном месте. Читайте на Windows и Android, сохраняйте главы и находите что-то новое.",
+    "attribute.mangalaunch-is-your-place-for-manga-manhwa-and-webtoons": "Читайте мангу, манхву и вебтуны на Windows и Android. Личная библиотека, офлайн-главы, перевод страниц на Android и синхронизация с Google Drive.",
     "attribute.mangalaunch-home": "MangaLaunch — в начало",
     "attribute.open-menu": "Открыть меню",
     "attribute.main-navigation": "Основная навигация",
@@ -313,6 +312,9 @@ window.SITE_MESSAGES = {
     "guide.home": "Вернуться к MangaLaunch",
     "guide.note": "Примеры используют вымышленный сайт. Замените адреса, идентификаторы и реализацию на данные вашего источника.",
     "language.label": "Язык",
-    "guide.description": "Создание расширений MangaLaunch: контракты Source API, каталоги и фильтры, авторизация, подпись и публикация."
+    "guide.description": "Создание расширений MangaLaunch: контракты Source API, каталоги и фильтры, авторизация, подпись и публикация.",
+    "seo.image-alt": "Открытая книга манги, из которой поднимаются иллюстрированные страницы.",
+    "seo.locale": "ru_RU",
+    "seo.alternate-locale": "en_US"
   }
 };

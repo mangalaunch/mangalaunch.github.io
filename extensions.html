@@ -1,7 +1,45 @@
 <!DOCTYPE html>
 
-<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#f7f4ed" name="theme-color"/><meta content="Create a MangaLaunch extension: source API contracts, catalog and filters, authentication, signing and publishing." data-i18n-content="guide.description" name="description"/><title data-i18n="guide.title">MangaLaunch — extension authoring guide</title><link href="assets/app-mark.png" rel="icon"/><link href="styles.css" rel="stylesheet"/><script defer="" src="site-config.js"></script><script defer="" src="locales.js"></script><script defer="" src="i18n.js"></script><script defer="" src="links.js"></script><script defer="" src="main.js"></script></head><body class="guide-page"><svg aria-hidden="true" class="svg-defs" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol></defs></svg><a class="skip-link" data-i18n="copy.skip-to-content" href="#main">Skip to content</a><div aria-hidden="true" class="scroll-progress"></div><header class="site-header">
-<a aria-label="MangaLaunch — home" class="brand" data-i18n-aria-label="attribute.mangalaunch-home" href="index.html"><img alt="" height="42" src="assets/app-mark.png" width="42"/><span>Manga<span class="brand-accent">Launch</span><span class="brand-dot">✳</span></span></a><div class="header-actions"><div aria-label="Language" class="language-switch" data-i18n-aria-label="language.label" role="group"><button aria-pressed="true" data-language="en" lang="en" type="button">EN</button><button aria-pressed="false" data-language="ru" lang="ru" type="button">RU</button></div><button aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" class="menu-toggle" data-i18n-aria-label="attribute.open-menu" type="button"><span></span><span></span></button></div>
+<html lang="en"><head prefix="og: https://ogp.me/ns#"><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="#f7f4ed" name="theme-color"/><meta name="description" content="Create a MangaLaunch extension: source API contracts, catalog and filters, authentication, signing and publishing." data-i18n-content="guide.description"/><meta name="application-name" content="MangaLaunch"/>
+<meta name="author" content="MangaLaunch"/>
+<meta name="robots" content="index, follow, max-image-preview:large"/>
+<link rel="canonical" href="https://mangalaunch.github.io/extensions.html"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="MangaLaunch"/>
+<meta property="og:title" content="MangaLaunch — extension authoring guide" data-i18n-content="guide.title"/>
+<meta property="og:description" content="Create a MangaLaunch extension: source API contracts, catalog and filters, authentication, signing and publishing." data-i18n-content="guide.description"/>
+<meta property="og:url" content="https://mangalaunch.github.io/extensions.html"/>
+<meta property="og:locale" content="en_US" data-i18n-content="seo.locale"/>
+<meta property="og:locale:alternate" content="ru_RU" data-i18n-content="seo.alternate-locale"/>
+<meta property="og:image" content="https://mangalaunch.github.io/assets/journey.png"/>
+<meta property="og:image:secure_url" content="https://mangalaunch.github.io/assets/journey.png"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="1536"/>
+<meta property="og:image:height" content="1024"/>
+<meta property="og:image:alt" content="An open manga book with illustrated pages unfolding into the air." data-i18n-content="seo.image-alt"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="MangaLaunch — extension authoring guide" data-i18n-content="guide.title"/>
+<meta name="twitter:description" content="Create a MangaLaunch extension: source API contracts, catalog and filters, authentication, signing and publishing." data-i18n-content="guide.description"/>
+<meta name="twitter:image" content="https://mangalaunch.github.io/assets/journey.png"/>
+<meta name="twitter:image:alt" content="An open manga book with illustrated pages unfolding into the air." data-i18n-content="seo.image-alt"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "TechArticle",
+  "headline": "MangaLaunch — extension authoring guide",
+  "description": "Create a MangaLaunch extension: source API contracts, catalog and filters, authentication, signing and publishing.",
+  "url": "https://mangalaunch.github.io/extensions.html",
+  "image": "https://mangalaunch.github.io/assets/journey.png",
+  "inLanguage": "en",
+  "about": {
+    "@type": "SoftwareApplication",
+    "name": "MangaLaunch",
+    "url": "https://mangalaunch.github.io/"
+  }
+}
+</script>
+<title data-i18n="guide.title">MangaLaunch — extension authoring guide</title><link href="assets/app-mark.png" rel="icon"/><link href="styles.css" rel="stylesheet"/><script defer="" src="site-config.js"></script><script defer="" src="locales.js"></script><script defer="" src="i18n.js"></script><script defer="" src="links.js"></script><script defer="" src="main.js"></script></head><body class="guide-page"><svg aria-hidden="true" class="svg-defs" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="i-arrow" viewbox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"></path></symbol></defs></svg><a class="skip-link" data-i18n="copy.skip-to-content" href="#main">Skip to content</a><div aria-hidden="true" class="scroll-progress"></div><header class="site-header">
+<a aria-label="MangaLaunch — home" class="brand" data-i18n-aria-label="attribute.mangalaunch-home" href="index.html"><img alt="" height="42" src="assets/app-mark.png" width="42"/><span>Manga<span class="brand-accent">Launch</span></span></a><div class="header-actions"><div aria-label="Language" class="language-switch" data-i18n-aria-label="language.label" role="group"><button aria-pressed="true" data-language="en" lang="en" type="button">EN</button><button aria-pressed="false" data-language="ru" lang="ru" type="button">RU</button></div><button aria-controls="main-nav" aria-expanded="false" aria-label="Open menu" class="menu-toggle" data-i18n-aria-label="attribute.open-menu" type="button"><span></span><span></span></button></div>
 <nav aria-label="Main navigation" class="header-nav" data-i18n-aria-label="attribute.main-navigation" id="main-nav">
 <a data-i18n="copy.library" href="index.html#library">Library</a><a data-i18n="copy.reader" href="index.html#reader">Reader</a><a data-i18n="copy.extensions" href="index.html#extensions">Extensions</a><a data-i18n="copy.faq" href="index.html#faq">FAQ</a>
 <a data-i18n="copy.sync" href="index.html#sync">Sync</a><a aria-current="page" data-i18n="copy.developer-guide" href="extensions.html">Developer guide</a><a class="nav-cta" data-i18n="copy.get-the-app" href="index.html#download">Get the app <svg class="icon"><use href="#i-arrow"></use></svg></a>

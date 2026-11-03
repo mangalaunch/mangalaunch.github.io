@@ -44,6 +44,9 @@ async (page) => {
     for (const width of [320,390,768,1024,1440]) {
       await page.setViewportSize({ width, height: 900 });
       await page.goto(base + `index.html?lang=${locale}`);
+      check(await page.locator('meta[property="og:locale"]').getAttribute('content') === (locale === 'en' ? 'en_US' : 'ru_RU'), `Social locale ${locale}`);
+      check(await page.locator('meta[name="description"]').getAttribute('content') === await page.locator('meta[name="twitter:description"]').getAttribute('content'), `Matching metadata descriptions ${locale}`);
+      check(!(await page.locator('body').innerText()).includes('✳'), 'Removed decorative asterisks');
       const actions = await page.locator('.extension-actions .text-link').evaluateAll(elements => elements.map(element => {
         const rect = element.getBoundingClientRect();
         return { left:rect.left, right:rect.right, top:rect.top, bottom:rect.bottom, width:rect.width };
@@ -68,6 +71,7 @@ async (page) => {
   await page.goto(base + 'extensions.html?lang=en');
   check(await page.locator('article:visible').count() === 1, 'One guide language visible');
   check(await page.locator('article:visible').getAttribute('lang') === 'en', 'English guide');
+  check(await page.locator('meta[property="og:title"]').getAttribute('content') === await page.title(), 'Guide social title matches the page');
   check(!(await page.locator('article:visible').innerText()).match(/\b(flutter|dart)\b/i), 'Guide has no application implementation details');
   check(!(await page.locator('article:visible').innerText()).match(/(?:nsfw_)?ml_extensions/), 'Guide has no internal repository names');
   check(await page.locator('.guide-article:visible').evaluate(element => parseFloat(getComputedStyle(element).fontSize) >= 16), 'Readable guide text');
@@ -75,6 +79,7 @@ async (page) => {
   check(new URL(page.url()).hash.startsWith('#en-'), 'English guide anchor');
   await page.getByRole('button', { name: 'RU', exact: true }).click();
   check(await page.locator('article:visible').getAttribute('lang') === 'ru', 'Russian guide');
+  check(await page.locator('meta[property="og:locale"]').getAttribute('content') === 'ru_RU', 'Russian guide metadata');
   check(new URL(page.url()).hash.startsWith('#ru-'), 'Language switches the guide anchor');
   await page.reload();
   check(await page.locator('article:visible').getAttribute('lang') === 'ru', 'Russian guide deep link survives reload');
