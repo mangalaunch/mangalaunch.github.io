@@ -36,7 +36,7 @@
       const raw = link.getAttribute('href');
       if (raw.startsWith('#')) return;
       const destination = new URL(raw, document.baseURI);
-      if (destination.origin === location.origin && /\/(index|extensions)\.html$/.test(destination.pathname)) {
+      if (destination.origin === location.origin && /\/(index|extensions|privacy|terms)\.html$/.test(destination.pathname)) {
         destination.searchParams.set('lang', locale);
         link.href = destination.href;
       }

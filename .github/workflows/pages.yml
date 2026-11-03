@@ -29,7 +29,7 @@ jobs:
       - name: Select public files
         run: |
           mkdir _site
-          cp index.html extensions.html styles.css main.js locales.js i18n.js site-config.js links.js .nojekyll _site/
+          cp index.html extensions.html privacy.html terms.html styles.css main.js locales.js i18n.js site-config.js links.js .nojekyll _site/
           cp -R assets _site/assets
       - uses: actions/upload-pages-artifact@v4
         with:

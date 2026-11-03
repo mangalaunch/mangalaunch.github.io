@@ -21,7 +21,7 @@ function metadata(file) {
 }
 
 test('social crawlers receive complete static metadata for each page without running scripts', () => {
-  for (const file of ['index.html', 'extensions.html']) {
+  for (const file of ['index.html', 'extensions.html', 'privacy.html', 'terms.html']) {
     const { head, tags } = metadata(file);
     const canonical = origin + (file === 'index.html' ? '' : file);
     assert.ok(head.includes(`rel="canonical" href="${canonical}"`));
@@ -52,11 +52,11 @@ test('social crawlers receive complete static metadata for each page without run
 });
 
 test('structured data describes the real app and guide without invented prices or ratings', () => {
-  for (const file of ['index.html', 'extensions.html']) {
+  for (const file of ['index.html', 'extensions.html', 'privacy.html', 'terms.html']) {
     const { head, tags } = metadata(file);
     const structured = JSON.parse(head.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1]);
     assert.equal(structured['@context'], 'https://schema.org');
-    assert.equal(structured['@type'], file === 'index.html' ? 'SoftwareApplication' : 'TechArticle');
+    assert.equal(structured['@type'], file === 'index.html' ? 'SoftwareApplication' : file === 'extensions.html' ? 'TechArticle' : 'WebPage');
     assert.equal(structured.url, tags.get('og:url'));
     assert.equal(structured.image, tags.get('og:image'));
     assert.equal(structured.description, tags.get('description'));

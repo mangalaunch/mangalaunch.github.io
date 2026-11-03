@@ -35,3 +35,5 @@ Connect AniList or MyAnimeList to track your progress in a service you already u
 ---
 
 [Explore MangaLaunch](https://mangalaunch.github.io/) · [Extension authoring guide](https://mangalaunch.github.io/extensions.html)
+
+[Privacy Policy](https://mangalaunch.github.io/privacy.html) · [Terms of Service](https://mangalaunch.github.io/terms.html) · [Contact](mailto:mangalaunch@proton.me)

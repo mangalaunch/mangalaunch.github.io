@@ -6,7 +6,7 @@ const vm = require('node:vm');
 
 const root = resolve(__dirname, '..');
 const read = name => readFileSync(resolve(root, name), 'utf8');
-const pages = ['index.html', 'extensions.html'];
+const pages = ['index.html', 'extensions.html', 'privacy.html', 'terms.html'];
 const dictionaryContext = { window: {} };
 vm.runInNewContext(read('locales.js'), dictionaryContext);
 const messages = dictionaryContext.window.SITE_MESSAGES;
@@ -107,7 +107,7 @@ test('publication selects only public static files', () => {
   assert.match(workflow, /id-token: write/);
   assert.match(workflow, /path: _site/);
   assert.ok(!workflow.includes('cp -R . '));
-  for (const file of ['index.html', 'extensions.html', 'styles.css', 'main.js', 'locales.js', 'i18n.js', 'site-config.js', 'links.js', '.nojekyll']) {
+  for (const file of [...pages, 'styles.css', 'main.js', 'locales.js', 'i18n.js', 'site-config.js', 'links.js', '.nojekyll']) {
     assert.ok(workflow.includes(file));
     assert.ok(existsSync(resolve(root, file)));
   }
