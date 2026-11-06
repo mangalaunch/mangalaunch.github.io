@@ -66,6 +66,20 @@ test('download and social placeholders do not invent public destinations', () =>
   assert.ok(html.includes('Google Drive'));
 });
 
+test('every video demo has a local poster and the player waits for activation', () => {
+  for (const locale of ['en', 'ru']) {
+    for (const device of ['phone', 'pad']) {
+      for (const extension of ['mp4', 'webp']) {
+        const path = `assets/${locale}_${device}.${extension}`;
+        assert.ok(existsSync(resolve(root, path)), `missing ${path}`);
+      }
+    }
+  }
+  const player = read('index.html').match(/<video[^>]*>/)?.[0];
+  assert.match(player, /preload="none"/);
+  assert.doesNotMatch(player, /\b(?:src|autoplay)\b/);
+});
+
 function languageContext({ query = '', stored, blocked = false } = {}) {
   const url = `https://example.github.io/project/index.html${query}`;
   const saved = new Map(stored ? [['mangalaunch.site.language', stored]] : []);

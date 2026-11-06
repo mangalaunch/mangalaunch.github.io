@@ -25,6 +25,68 @@ document.addEventListener('click', event => {
 const desktopMenu = matchMedia('(min-width: 1101px)');
 desktopMenu.addEventListener('change', () => closeMenu());
 
+const demo = document.querySelector('.video-demo');
+if (demo) {
+  const devices = demo.querySelector('.demo-devices');
+  const buttons = [...devices.querySelectorAll('[data-demo-device]')];
+  const play = demo.querySelector('.demo-play');
+  const poster = play.querySelector('img');
+  const video = demo.querySelector('video');
+  const errorMessage = demo.querySelector('.demo-error');
+  const directLink = errorMessage.querySelector('a');
+  let device = 'phone';
+
+  function resetVideo() {
+    if (video.hidden) return;
+    video.pause();
+    video.hidden = true;
+    video.removeAttribute('src');
+    video.load();
+    play.hidden = false;
+  }
+
+  function updateDemo() {
+    const asset = `assets/${SiteI18n.locale}_${device}`;
+    const source = `${asset}.mp4`;
+    if (play.getAttribute('href') === source) return;
+    resetVideo();
+    errorMessage.hidden = true;
+    play.setAttribute('href', source);
+    directLink.setAttribute('href', source);
+    poster.src = `${asset}.webp`;
+    buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.demoDevice === device)));
+  }
+
+  function showVideoError() {
+    if (video.hidden) return;
+    const restoreFocus = document.activeElement === video;
+    resetVideo();
+    errorMessage.hidden = false;
+    if (restoreFocus) directLink.focus({ preventScroll: true });
+  }
+
+  devices.hidden = false;
+  buttons.forEach(button => button.addEventListener('click', () => {
+    device = button.dataset.demoDevice;
+    updateDemo();
+  }));
+  play.addEventListener('click', event => {
+    if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    const moveFocus = document.activeElement === play;
+    errorMessage.hidden = true;
+    video.poster = poster.src;
+    video.src = play.href;
+    video.hidden = false;
+    play.hidden = true;
+    if (moveFocus) video.focus({ preventScroll: true });
+    video.play().catch(error => { if (error.name !== 'AbortError') showVideoError(); });
+  });
+  video.addEventListener('error', showVideoError);
+  document.addEventListener('site:languagechange', updateDemo);
+  updateDemo();
+}
+
 const libraryTabs = [...document.querySelectorAll('[data-library]')];
 const books = [...document.querySelectorAll('[data-collection]')];
 function selectCollection(tab, focus = false) {

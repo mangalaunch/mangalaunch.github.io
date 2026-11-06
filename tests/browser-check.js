@@ -8,6 +8,32 @@ async (page) => {
   check(await page.locator('html').getAttribute('lang') === 'en', 'English page');
   check(await page.locator('.hero h1').innerText() === 'Your manga.\nYour rhythm.', 'English headline');
   check(await page.locator('.social-placeholder').isDisabled(), 'Telegram is a placeholder');
+  await page.getByRole('link', { name: 'Watch the demo', exact: true }).click();
+  check(new URL(page.url()).hash === '#demo', 'Hero links to the video demo');
+  const demo = page.locator('#demo');
+  const preview = demo.locator('.demo-play');
+  const video = demo.locator('video');
+  await demo.screenshot({ path: 'output/playwright/video-demo-desktop.png', animations: 'disabled' });
+  for (const locale of ['en', 'ru']) {
+    await page.getByRole('button', { name: locale.toUpperCase(), exact: true }).click();
+    for (const device of ['phone', 'pad']) {
+      const button = demo.locator(`[data-demo-device="${device}"]`);
+      await button.click();
+      const asset = `assets/${locale}_${device}`;
+      check(await button.getAttribute('aria-pressed') === 'true', `Selected demo ${asset}`);
+      check(await preview.getAttribute('href') === `${asset}.mp4`, `Localized video ${asset}`);
+      check(await preview.locator('img').getAttribute('src') === `${asset}.webp`, `Localized poster ${asset}`);
+      check(await video.getAttribute('src') === null, 'Video source is unset until play');
+      await preview.click();
+      await page.waitForFunction(() => document.querySelector('#demo video').currentTime > .1);
+      check((await video.getAttribute('src')).endsWith(`${asset}.mp4`), `Playing ${asset}`);
+    }
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await demo.getByRole('button', { name: 'Телефон', exact: true }).click();
+  await demo.screenshot({ path: 'output/playwright/video-demo-mobile.png', animations: 'disabled' });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.getByRole('button', { name: 'EN', exact: true }).click();
   await page.getByRole('tab', { name: 'Read later 2', exact: true }).click();
   check(await page.locator('.book:visible').count() === 2, 'Library demo still switches collections');
   await page.locator('[data-page-step="1"]').click();
